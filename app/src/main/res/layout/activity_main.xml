@@ -5,15 +5,30 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/neutral_white"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/qAToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbarDetail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/neutral_light_grey"
+            android:elevation="20dp"
+            android:minHeight="?attr/actionBarSize"
+            android:paddingTop="15dp"
+            app:title="Forecast"
+            app:titleCentered="false"
+            app:titleMarginTop="30dp"
+            app:titleTextColor="@color/black" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

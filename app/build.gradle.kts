@@ -56,4 +56,7 @@ dependencies {
     //    gson
     implementation(libs.gson)
     implementation(libs.converter.gson)
+
+    //  Picasso for Image
+    implementation ("com.squareup.picasso:picasso:2.8")
 }

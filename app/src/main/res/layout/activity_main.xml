@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/neutral_white"
+    android:background="@color/dark_blue"
     tools:context=".MainActivity">
 
 <!--    ToolBar   -->
@@ -20,7 +20,7 @@
             android:id="@+id/toolbarDetail"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/neutral_light_grey"
+            android:background="@color/neutral_grey"
             android:elevation="20dp"
             android:minHeight="?attr/actionBarSize"
             android:paddingTop="15dp"
@@ -33,7 +33,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -52,7 +52,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="10dp"
-                app:cardBackgroundColor="@color/blue"
+                app:cardBackgroundColor="@color/light_blue"
                 app:cardCornerRadius="20dp"
                 app:cardElevation="30dp">
 
@@ -89,25 +89,23 @@
                         android:id="@+id/mainLatitude"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="15dp"
                         android:text="Latitude: 20.3749"
                         android:textColor="@color/white"
                         android:textSize="14sp"
-                        app:layout_constraintStart_toEndOf="@id/mainLongitude"
-                        app:layout_constraintTop_toTopOf="@id/mainLongitude"
-                        app:layout_constraintBottom_toBottomOf="@id/mainLongitude"/>
+                        app:layout_constraintStart_toStartOf="@id/mainLongitude"
+                        app:layout_constraintTop_toBottomOf="@id/mainLongitude"/>
 
                     <TextView
                         android:id="@+id/mainTimeDate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="15dp"
-                        android:layout_marginTop="5dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginEnd="15dp"
                         android:text="Today, March 20 2025 | 03:24PM"
                         android:textColor="@color/white"
                         android:textSize="14sp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/mainLatitude" />
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <ImageView
                         android:id="@+id/mainWeatherImage"
@@ -115,10 +113,9 @@
                         android:layout_height="100dp"
                         android:layout_marginTop="25dp"
                         android:elevation="10dp"
-                        android:src="@drawable/sunny"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/mainTimeDate" />
+                        app:layout_constraintTop_toBottomOf="@+id/mainLatitude" />
 
                     <TextView
                         android:id="@+id/mainTempDegree"
@@ -151,23 +148,6 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
 
-            <com.google.android.material.divider.MaterialDivider
-                android:id="@+id/materialCardDivider"
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:layout_marginTop="25dp"
-                app:dividerColor="@color/neutral_lighter_grey" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="15dp"
-                android:text="Weather"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
             <LinearLayout
                 android:id="@+id/atmDetailLayout1"
                 android:layout_width="match_parent"
@@ -183,7 +163,7 @@
                     android:layout_width="50dp"
                     android:layout_height="100dp"
                     android:layout_weight="1"
-                    android:layout_margin="10dp"
+                    android:layout_margin="5dp"
                     app:cardCornerRadius="10dp"
                     app:cardBackgroundColor="@color/lighter_blue">
 
@@ -198,7 +178,7 @@
                             android:id="@+id/feelsLikeImage"
                             android:layout_width="30dp"
                             android:layout_height="30dp"
-                            android:src="@drawable/sunny" />
+                            android:src="@drawable/feels_like" />
 
                         <TextView
                             android:id="@+id/feelsLikeText"
@@ -214,7 +194,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
-                            android:text="33°"
                             android:textColor="@color/black"
                             android:textSize="12sp" />
                     </LinearLayout>
@@ -225,7 +204,7 @@
                     android:layout_width="50dp"
                     android:layout_height="100dp"
                     android:layout_weight="1"
-                    android:layout_margin="10dp"
+                    android:layout_margin="5dp"
                     app:cardCornerRadius="10dp"
                     app:cardBackgroundColor="@color/lighter_blue">
 
@@ -239,7 +218,7 @@
                             android:id="@+id/humidityImage"
                             android:layout_width="30dp"
                             android:layout_height="30dp"
-                            android:src="@drawable/sunny" />
+                            android:src="@drawable/humiditys" />
 
                         <TextView
                             android:id="@+id/humidityText"
@@ -255,7 +234,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
-                            android:text="24%"
                             android:textColor="@color/black"
                             android:textSize="12sp" />
                     </LinearLayout>
@@ -266,7 +244,7 @@
                     android:layout_width="50dp"
                     android:layout_height="100dp"
                     android:layout_weight="1"
-                    android:layout_margin="10dp"
+                    android:layout_margin="5dp"
                     app:cardCornerRadius="10dp"
                     app:cardBackgroundColor="@color/lighter_blue">
 
@@ -280,7 +258,7 @@
                             android:id="@+id/visibilityImage"
                             android:layout_width="30dp"
                             android:layout_height="30dp"
-                            android:src="@drawable/sunny" />
+                            android:src="@drawable/visibility" />
 
                         <TextView
                             android:id="@+id/visibilityText"
@@ -296,7 +274,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
-                            android:text="20 km"
                             android:textColor="@color/black"
                             android:textSize="12sp" />
                     </LinearLayout>
@@ -317,7 +294,7 @@
                     android:layout_width="50dp"
                     android:layout_height="100dp"
                     android:layout_weight="1"
-                    android:layout_margin="10dp"
+                    android:layout_margin="5dp"
                     app:cardCornerRadius="10dp"
                     app:cardBackgroundColor="@color/lighter_blue">
 
@@ -332,13 +309,14 @@
                             android:id="@+id/windSpeedImage"
                             android:layout_width="30dp"
                             android:layout_height="30dp"
-                            android:src="@drawable/sunny" />
+                            android:src="@drawable/wind_speed" />
 
                         <TextView
                             android:id="@+id/windSpeedText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="7dp"
+                            android:textAlignment="center"
                             android:text="Wind Speed"
                             android:textColor="@color/black"
                             android:textSize="12sp" />
@@ -348,7 +326,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
-                            android:text="12 km/hr"
+                            android:textAlignment="center"
                             android:textColor="@color/black"
                             android:textSize="12sp" />
                     </LinearLayout>
@@ -359,7 +337,7 @@
                     android:layout_width="50dp"
                     android:layout_height="100dp"
                     android:layout_weight="1"
-                    android:layout_margin="10dp"
+                    android:layout_margin="5dp"
                     app:cardCornerRadius="10dp"
                     app:cardBackgroundColor="@color/lighter_blue">
 
@@ -373,13 +351,14 @@
                             android:id="@+id/windDirectionImage"
                             android:layout_width="30dp"
                             android:layout_height="30dp"
-                            android:src="@drawable/sunny" />
+                            android:src="@drawable/wind_direction" />
 
                         <TextView
                             android:id="@+id/windDirectionText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="7dp"
+                            android:textAlignment="center"
                             android:text="Wind Direction"
                             android:textColor="@color/black"
                             android:textSize="12sp" />
@@ -389,7 +368,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
-                            android:text="34° NW"
+                            android:textAlignment="center"
                             android:textColor="@color/black"
                             android:textSize="12sp" />
                     </LinearLayout>
@@ -400,7 +379,7 @@
                     android:layout_width="50dp"
                     android:layout_height="100dp"
                     android:layout_weight="1"
-                    android:layout_margin="10dp"
+                    android:layout_margin="5dp"
                     app:cardCornerRadius="10dp"
                     app:cardBackgroundColor="@color/lighter_blue">
 
@@ -414,13 +393,14 @@
                             android:id="@+id/windGustSpeedImage"
                             android:layout_width="30dp"
                             android:layout_height="30dp"
-                            android:src="@drawable/sunny" />
+                            android:src="@drawable/wind_gust_speed" />
 
                         <TextView
                             android:id="@+id/windGustSpeedText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="7dp"
+                            android:textAlignment="center"
                             android:text="Wind Gust Speed"
                             android:textColor="@color/black"
                             android:textSize="12sp" />
@@ -430,7 +410,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
-                            android:text="4.5 m/s"
+                            android:textAlignment="center"
                             android:textColor="@color/black"
                             android:textSize="12sp" />
                     </LinearLayout>
@@ -441,35 +421,42 @@
                 android:id="@+id/sunRiseSetCard"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                app:cardCornerRadius="10dp"
-                app:cardBackgroundColor="@color/lighter_blue">
+                android:layout_margin="15dp"
+                app:cardCornerRadius="10dp">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/sunRiseSetLayout"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:background="@drawable/sun_bg">
+
+                    <ImageView
+                        android:id="@+id/sunRiseImage"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:src="@drawable/sun_rise"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"/>
 
                     <TextView
                         android:id="@+id/sunRiseSetInitialText1"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginTop="10dp"
-                        android:text="0%"
+                        android:text="Sunrise"
                         android:textColor="@color/dark_blue"
-                        android:textSize="14sp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        android:textSize="12sp"
+                        app:layout_constraintStart_toStartOf="@id/sunRiseImage"
+                        app:layout_constraintTop_toBottomOf="@id/sunRiseImage"/>
 
                     <TextView
                         android:id="@+id/sunRiseSetInitialText2"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:paddingBottom="10dp"
-                        android:text="Clear Sky"
                         android:textColor="@color/dark_blue"
-                        android:textSize="12sp"
+                        android:textSize="14sp"
                         app:layout_constraintTop_toBottomOf="@id/sunRiseSetInitialText1"
                         app:layout_constraintStart_toStartOf="@+id/sunRiseSetInitialText1" />
 
@@ -480,34 +467,42 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
                         android:indeterminate="false"
+                        android:max="10"
                         android:minHeight="8dp"
                         android:progress="1"
-                        android:max="10"
-                        android:progressDrawable="@drawable/cloud_progressbar_bg"
-                        app:layout_constraintStart_toEndOf="@id/sunRiseSetInitialText1"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/sunRiseSetFinalText1"/>
+                        android:progressDrawable="@drawable/sun_progressbar_bg"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/sunRiseSetFinalText2"
+                        app:layout_constraintStart_toEndOf="@id/sunRiseSetInitialText2"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/sunSetImage"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginTop="10dp"
+                        android:src="@drawable/sun_set"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"/>
 
                     <TextView
                         android:id="@+id/sunRiseSetFinalText1"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:layout_marginEnd="10dp"
-                        android:layout_marginTop="10dp"
-                        android:text="100%"
+                        android:text="Sunset"
                         android:textColor="@color/dark_blue"
-                        android:textSize="14sp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        android:textSize="12sp"
+                        app:layout_constraintEnd_toEndOf="@id/sunSetImage"
+                        app:layout_constraintTop_toBottomOf="@id/sunSetImage"/>
 
                     <TextView
-                        android:id="@+id/sunRiseSetrFinalText2"
+                        android:id="@+id/sunRiseSetFinalText2"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:paddingBottom="10dp"
-                        android:text="Fully Cloudy"
                         android:textColor="@color/dark_blue"
-                        android:textSize="12sp"
+                        android:textSize="14sp"
                         app:layout_constraintTop_toBottomOf="@id/sunRiseSetFinalText1"
                         app:layout_constraintEnd_toEndOf="@+id/sunRiseSetFinalText1" />
 
@@ -518,6 +513,7 @@
                 android:id="@+id/atmDetailLayout3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
                 android:layout_marginStart="15dp"
                 android:layout_marginEnd="15dp"
                 android:gravity="fill"
@@ -528,7 +524,7 @@
                     android:layout_width="50dp"
                     android:layout_height="100dp"
                     android:layout_weight="1"
-                    android:layout_margin="10dp"
+                    android:layout_margin="5dp"
                     app:cardCornerRadius="10dp"
                     app:cardBackgroundColor="@color/lighter_blue">
 
@@ -543,14 +539,15 @@
                             android:id="@+id/pressureImage"
                             android:layout_width="30dp"
                             android:layout_height="30dp"
-                            android:src="@drawable/sunny" />
+                            android:src="@drawable/air_pressure" />
 
                         <TextView
                             android:id="@+id/pressureText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="7dp"
-                            android:text="Pressure"
+                            android:text="Air Pressure"
+                            android:textAlignment="center"
                             android:textColor="@color/black"
                             android:textSize="12sp" />
 
@@ -559,7 +556,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
-                            android:text="1012 hPa"
+                            android:textAlignment="center"
                             android:textColor="@color/black"
                             android:textSize="12sp" />
                     </LinearLayout>
@@ -570,7 +567,7 @@
                     android:layout_width="50dp"
                     android:layout_height="100dp"
                     android:layout_weight="1"
-                    android:layout_margin="10dp"
+                    android:layout_margin="5dp"
                     app:cardCornerRadius="10dp"
                     app:cardBackgroundColor="@color/lighter_blue">
 
@@ -584,13 +581,14 @@
                             android:id="@+id/groundLevelPressureImage"
                             android:layout_width="30dp"
                             android:layout_height="30dp"
-                            android:src="@drawable/sunny" />
+                            android:src="@drawable/ground_pressure" />
 
                         <TextView
                             android:id="@+id/groundLevelPressureText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="7dp"
+                            android:textAlignment="center"
                             android:text="Ground Level Pressure"
                             android:textColor="@color/black"
                             android:textSize="12sp" />
@@ -600,7 +598,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
-                            android:text="1024 hPa"
+                            android:textAlignment="center"
                             android:textColor="@color/black"
                             android:textSize="12sp" />
                     </LinearLayout>
@@ -611,7 +609,7 @@
                     android:layout_width="50dp"
                     android:layout_height="100dp"
                     android:layout_weight="1"
-                    android:layout_margin="10dp"
+                    android:layout_margin="5dp"
                     app:cardCornerRadius="10dp"
                     app:cardBackgroundColor="@color/lighter_blue">
 
@@ -625,13 +623,14 @@
                             android:id="@+id/seaLevelImage"
                             android:layout_width="30dp"
                             android:layout_height="30dp"
-                            android:src="@drawable/sunny" />
+                            android:src="@drawable/sea_level" />
 
                         <TextView
                             android:id="@+id/seaLevelText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="7dp"
+                            android:textAlignment="center"
                             android:text="Sea Level"
                             android:textColor="@color/black"
                             android:textSize="12sp" />
@@ -641,7 +640,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
-                            android:text="1231 hPa"
+                            android:textAlignment="center"
                             android:textColor="@color/black"
                             android:textSize="12sp" />
                     </LinearLayout>
@@ -652,37 +651,47 @@
                 android:id="@+id/cloudProgressBarCard"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_margin="15dp"
                 app:cardCornerRadius="10dp"
                 app:cardBackgroundColor="@color/lighter_blue">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/cloudProgressBarLayout"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:background="@drawable/cloud_bg">
+
+                    <ImageView
+                        android:id="@+id/clearSkyImage"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:src="@drawable/clear_sky"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"/>
 
                     <TextView
                         android:id="@+id/cloudProgressBarInitialText1"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginTop="10dp"
-                        android:text="0%"
+                        android:layout_marginTop="7dp"
+                        android:text="Clear Sky"
                         android:textColor="@color/dark_blue"
-                        android:textSize="14sp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        android:textSize="12sp"
+                        app:layout_constraintStart_toStartOf="@id/clearSkyImage"
+                        app:layout_constraintTop_toBottomOf="@id/clearSkyImage"/>
 
                     <TextView
                         android:id="@+id/cloudProgressBarInitialText2"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:paddingBottom="10dp"
-                        android:text="Clear Sky"
+                        android:text="0%"
                         android:textColor="@color/dark_blue"
-                        android:textSize="12sp"
+                        android:textSize="14sp"
                         app:layout_constraintTop_toBottomOf="@id/cloudProgressBarInitialText1"
-                        app:layout_constraintStart_toStartOf="@+id/cloudProgressBarInitialText1" />
+                        app:layout_constraintStart_toStartOf="@+id/cloudProgressBarInitialText1"/>
 
                     <ProgressBar
                         android:id="@+id/cloudPB"
@@ -692,33 +701,44 @@
                         android:layout_margin="10dp"
                         android:indeterminate="false"
                         android:minHeight="8dp"
+                        android:rotation="180"
                         android:progress="1"
-                        android:max="10"
+                        android:max="100"
                         android:progressDrawable="@drawable/cloud_progressbar_bg"
                         app:layout_constraintStart_toEndOf="@id/cloudProgressBarInitialText1"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/cloudProgressBarFinalText1"/>
+                        app:layout_constraintEnd_toStartOf="@id/cloudProgressBarFinalText1"
+                        app:layout_constraintBottom_toBottomOf="parent"/>
+
+                    <ImageView
+                        android:id="@+id/cloudSkyImage"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginTop="10dp"
+                        android:src="@drawable/cloud_sky"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"/>
 
                     <TextView
                         android:id="@+id/cloudProgressBarFinalText1"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:layout_marginEnd="10dp"
-                        android:layout_marginTop="10dp"
-                        android:text="100%"
+                        android:layout_marginTop="7dp"
+                        android:text="Cloudy Sky"
                         android:textColor="@color/dark_blue"
-                        android:textSize="14sp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        android:textSize="12sp"
+                        app:layout_constraintEnd_toEndOf="@id/cloudSkyImage"
+                        app:layout_constraintTop_toBottomOf="@id/cloudSkyImage"/>
 
                     <TextView
                         android:id="@+id/cloudProgressBarFinalText2"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:paddingBottom="10dp"
-                        android:text="Fully Cloudy"
+                        android:text="100%"
                         android:textColor="@color/dark_blue"
-                        android:textSize="12sp"
+                        android:textSize="14sp"
                         app:layout_constraintTop_toBottomOf="@id/cloudProgressBarFinalText1"
                         app:layout_constraintEnd_toEndOf="@+id/cloudProgressBarFinalText1" />
 
@@ -729,6 +749,7 @@
                 android:id="@+id/minMaxTempLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
                 android:layout_marginStart="15dp"
                 android:layout_marginEnd="15dp"
                 android:gravity="fill"
@@ -739,7 +760,7 @@
                     android:layout_width="50dp"
                     android:layout_height="100dp"
                     android:layout_weight="1"
-                    android:layout_margin="10dp"
+                    android:layout_margin="5dp"
                     app:cardCornerRadius="10dp"
                     app:cardBackgroundColor="@color/lighter_blue">
 
@@ -754,13 +775,14 @@
                             android:id="@+id/minTempImage"
                             android:layout_width="30dp"
                             android:layout_height="30dp"
-                            android:src="@drawable/sunny" />
+                            android:src="@drawable/min_temperature" />
 
                         <TextView
                             android:id="@+id/minTempText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="7dp"
+                            android:textAlignment="center"
                             android:text="Minimum Temperature"
                             android:textColor="@color/black"
                             android:textSize="12sp" />
@@ -770,7 +792,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
-                            android:text="28 °C"
+                            android:textAlignment="center"
                             android:textColor="@color/black"
                             android:textSize="12sp" />
                     </LinearLayout>
@@ -781,7 +803,7 @@
                     android:layout_width="50dp"
                     android:layout_height="100dp"
                     android:layout_weight="1"
-                    android:layout_margin="10dp"
+                    android:layout_margin="5dp"
                     app:cardCornerRadius="10dp"
                     app:cardBackgroundColor="@color/lighter_blue">
 
@@ -795,13 +817,14 @@
                             android:id="@+id/maxTempImage"
                             android:layout_width="30dp"
                             android:layout_height="30dp"
-                            android:src="@drawable/sunny" />
+                            android:src="@drawable/max_temperature" />
 
                         <TextView
                             android:id="@+id/maxTempText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="7dp"
+                            android:textAlignment="center"
                             android:text="Maximum Temperature"
                             android:textColor="@color/black"
                             android:textSize="12sp" />
@@ -811,7 +834,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
-                            android:text="32 °C"
+                            android:textAlignment="center"
                             android:textColor="@color/black"
                             android:textSize="12sp" />
                     </LinearLayout>

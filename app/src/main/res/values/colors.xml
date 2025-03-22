@@ -28,4 +28,7 @@
     <color name="yellow">#FFC224</color>
     <color name="dark_yellow">#332707</color>
 
+<!--    Progress Bar Color  -->
+    <color name="gray">#DCDCDC</color>
+
 </resources>

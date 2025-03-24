@@ -3,10 +3,12 @@ package com.example.weather
 import android.icu.text.SimpleDateFormat
 import android.icu.util.TimeZone
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
+import android.os.Handler
+import android.os.Looper
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.weather.databinding.ActivityMainBinding
 import com.example.weather.models.WeatherData
 import com.squareup.picasso.Picasso
@@ -18,7 +20,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.Date
 import java.util.Locale
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshListener {
 
 //    47561fc40c887a4bbb468d6530937de1
 
@@ -26,10 +28,15 @@ class MainActivity : AppCompatActivity() {
         ActivityMainBinding.inflate(layoutInflater)
     }
 
+    lateinit var swipeRefreshLayout: SwipeRefreshLayout
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(binding.root)
+
+        swipeRefreshLayout = binding.refreshSwipe
+        swipeRefreshLayout.setOnRefreshListener(this)
 
         setSupportActionBar(binding.toolbarDetail)
 
@@ -44,7 +51,7 @@ class MainActivity : AppCompatActivity() {
             .build()
             .create(APIInterface::class.java)
 
-        val response = retrofit.getWeatherData("puri", "47561fc40c887a4bbb468d6530937de1", "metric")
+        val response = retrofit.getWeatherData("jaipur", "47561fc40c887a4bbb468d6530937de1", "metric")
         response.enqueue(object : Callback<WeatherData>{
             override fun onResponse(call: Call<WeatherData>, response: Response<WeatherData>) {
                 val responseBody = response.body()
@@ -88,11 +95,10 @@ class MainActivity : AppCompatActivity() {
                     val sunset = responseBody.sys.sunset
                     val sunsetNew = convertUnixToTime(sunset)
 
-
-
                     binding.mainCityName.text = city
                     binding.mainLongitude.text = "Longitude: ${longitude}"
                     binding.mainLatitude.text = "Latitude: ${latitude}"
+
                     if (icon != null) {
                         val iconUrl = "https://openweathermap.org/img/wn/${icon}@2x.png"
                         Picasso.get()
@@ -100,9 +106,10 @@ class MainActivity : AppCompatActivity() {
                             .error(R.drawable.error_image)
                             .into(binding.mainWeatherImage)
                     }
+
                     binding.mainTempDegree.text = "${temperature} \u00B0C"
                     binding.mainEnv.text = envDescription
-                    binding.feelsLikeValue.text = "${feelsLike}°"
+                    binding.feelsLikeValue.text = "${feelsLike} °C"
                     binding.humidityValue.text = "${humidity} %"
                     binding.visibilityValue.text = "${visibilityKmNew} km/h"
                     binding.windSpeedValue.text = "${windSpeedNew} km/h"
@@ -119,6 +126,7 @@ class MainActivity : AppCompatActivity() {
 
                     binding.minTempValue.text = "${minTemperature}  °C"
                     binding.maxTempValue.text = "${maxTemperature}  °C"
+
                     binding.mainTimeDate.text = formattedDate
 
                     binding.sunRiseSetInitialText2.text = sunriseNew
@@ -167,7 +175,13 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-
+    override fun onRefresh() {
+        Handler(Looper.getMainLooper()).postDelayed({
+            Toast.makeText(this, "refreshing", Toast.LENGTH_SHORT).show()
+            fetchWeatherData()
+            swipeRefreshLayout.isRefreshing = false
+        }, 1000)
+    }
 
 //    override fun onCreateOptionsMenu(menu: Menu): Boolean {
 //        menuInflater.inflate(R.menu.menu, menu)

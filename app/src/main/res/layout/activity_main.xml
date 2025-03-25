@@ -39,7 +39,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/mainAToolbar">
 
-
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -47,7 +46,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/mainAToolbar">
+            app:layout_constraintTop_toBottomOf="parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -105,17 +104,17 @@
                             app:layout_constraintStart_toStartOf="@id/mainLongitude"
                             app:layout_constraintTop_toBottomOf="@id/mainLongitude" />
 
-                        <TextView
-                            android:id="@+id/mainTimeDate"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="15dp"
-                            android:layout_marginEnd="15dp"
-                            android:text="Today, March 20 2025 | 03:24PM"
-                            android:textColor="@color/white"
-                            android:textSize="14sp"
+                        <com.airbnb.lottie.LottieAnimationView
+                            android:id="@+id/lottieAnimation"
+                            android:layout_width="0dp"
+                            android:layout_height="100dp"
+                            android:layout_marginTop="25dp"
+                            android:elevation="10dp"
+                            app:lottie_autoPlay="true"
+                            app:lottie_loop="true"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/mainLatitude"/>
 
                         <ImageView
                             android:id="@+id/mainWeatherImage"

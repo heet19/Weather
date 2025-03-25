@@ -50,16 +50,20 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
-    //    Retrofit for API
+    //  Retrofit for API
     implementation(libs.retrofit)
 
-    //    gson
+    //  gson
     implementation(libs.gson)
     implementation(libs.converter.gson)
 
     //  Picasso for Image
     implementation ("com.squareup.picasso:picasso:2.8")
 
-    // Refresh
+    //  Refresh
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
+
+    //  Lottie Animation
+    implementation ("com.airbnb.android:lottie:6.0.0")
+
 }

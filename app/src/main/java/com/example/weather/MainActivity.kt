@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshListener {
             .build()
             .create(APIInterface::class.java)
 
-        val response = retrofit.getWeatherData("jaipur", "47561fc40c887a4bbb468d6530937de1", "metric")
+        val response = retrofit.getWeatherData("rajkot", "47561fc40c887a4bbb468d6530937de1", "metric")
         response.enqueue(object : Callback<WeatherData>{
             override fun onResponse(call: Call<WeatherData>, response: Response<WeatherData>) {
                 val responseBody = response.body()

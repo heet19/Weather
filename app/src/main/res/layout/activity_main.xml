@@ -16,6 +16,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbarDetail"
             android:layout_width="match_parent"
@@ -170,7 +171,7 @@
                     <androidx.cardview.widget.CardView
                         android:id="@+id/feelsLikeCard"
                         android:layout_width="50dp"
-                        android:layout_height="100dp"
+                        android:layout_height="120dp"
                         android:layout_margin="5dp"
                         android:layout_weight="1"
                         app:cardBackgroundColor="@color/lighter_blue"
@@ -179,15 +180,23 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_marginTop="5dp"
                             android:gravity="center"
                             android:orientation="vertical">
 
-                            <ImageView
-                                android:id="@+id/feelsLikeImage"
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:src="@drawable/feels_like" />
+                            <com.airbnb.lottie.LottieAnimationView
+                                android:id="@+id/lottieTemperature"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:scaleType="centerCrop"
+                                app:lottie_rawRes="@raw/temperature_icon"
+                                app:lottie_autoPlay="true"
+                                app:lottie_loop="true" />
+
+<!--                            <ImageView-->
+<!--                                android:id="@+id/feelsLikeImage"-->
+<!--                                android:layout_width="30dp"-->
+<!--                                android:layout_height="30dp"-->
+<!--                                android:src="@drawable/feels_like" />-->
 
                             <TextView
                                 android:id="@+id/feelsLikeText"
@@ -211,7 +220,7 @@
                     <androidx.cardview.widget.CardView
                         android:id="@+id/humidityCard"
                         android:layout_width="50dp"
-                        android:layout_height="100dp"
+                        android:layout_height="120dp"
                         android:layout_margin="5dp"
                         android:layout_weight="1"
                         app:cardBackgroundColor="@color/lighter_blue"
@@ -223,11 +232,20 @@
                             android:gravity="center"
                             android:orientation="vertical">
 
-                            <ImageView
-                                android:id="@+id/humidityImage"
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:src="@drawable/humiditys" />
+                            <com.airbnb.lottie.LottieAnimationView
+                                android:id="@+id/lottieHumidity"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:scaleType="centerCrop"
+                                app:lottie_rawRes="@raw/humidity_icon"
+                                app:lottie_autoPlay="true"
+                                app:lottie_loop="true" />
+
+<!--                            <ImageView-->
+<!--                                android:id="@+id/humidityImage"-->
+<!--                                android:layout_width="30dp"-->
+<!--                                android:layout_height="30dp"-->
+<!--                                android:src="@drawable/humiditys" />-->
 
                             <TextView
                                 android:id="@+id/humidityText"
@@ -251,7 +269,7 @@
                     <androidx.cardview.widget.CardView
                         android:id="@+id/visibilityCard"
                         android:layout_width="50dp"
-                        android:layout_height="100dp"
+                        android:layout_height="120dp"
                         android:layout_margin="5dp"
                         android:layout_weight="1"
                         app:cardBackgroundColor="@color/lighter_blue"
@@ -263,11 +281,20 @@
                             android:gravity="center"
                             android:orientation="vertical">
 
-                            <ImageView
-                                android:id="@+id/visibilityImage"
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:src="@drawable/visibility" />
+                            <com.airbnb.lottie.LottieAnimationView
+                                android:id="@+id/lottieVisibility"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:scaleType="centerCrop"
+                                app:lottie_rawRes="@raw/visibility_icon"
+                                app:lottie_autoPlay="true"
+                                app:lottie_loop="true" />
+
+<!--                            <ImageView-->
+<!--                                android:id="@+id/visibilityImage"-->
+<!--                                android:layout_width="30dp"-->
+<!--                                android:layout_height="30dp"-->
+<!--                                android:src="@drawable/visibility" />-->
 
                             <TextView
                                 android:id="@+id/visibilityText"
@@ -301,7 +328,7 @@
                     <androidx.cardview.widget.CardView
                         android:id="@+id/windSpeedCard"
                         android:layout_width="50dp"
-                        android:layout_height="100dp"
+                        android:layout_height="120dp"
                         android:layout_margin="5dp"
                         android:layout_weight="1"
                         app:cardBackgroundColor="@color/lighter_blue"
@@ -314,11 +341,20 @@
                             android:gravity="center"
                             android:orientation="vertical">
 
-                            <ImageView
-                                android:id="@+id/windSpeedImage"
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:src="@drawable/wind_speed" />
+                            <com.airbnb.lottie.LottieAnimationView
+                                android:id="@+id/lottieWindSpeed"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:scaleType="centerCrop"
+                                app:lottie_rawRes="@raw/wind_speed_icon"
+                                app:lottie_autoPlay="true"
+                                app:lottie_loop="true" />
+
+<!--                            <ImageView-->
+<!--                                android:id="@+id/windSpeedImage"-->
+<!--                                android:layout_width="30dp"-->
+<!--                                android:layout_height="30dp"-->
+<!--                                android:src="@drawable/wind_speed" />-->
 
                             <TextView
                                 android:id="@+id/windSpeedText"
@@ -344,7 +380,7 @@
                     <androidx.cardview.widget.CardView
                         android:id="@+id/windDirectionCard"
                         android:layout_width="50dp"
-                        android:layout_height="100dp"
+                        android:layout_height="120dp"
                         android:layout_margin="5dp"
                         android:layout_weight="1"
                         app:cardBackgroundColor="@color/lighter_blue"
@@ -356,11 +392,20 @@
                             android:gravity="center"
                             android:orientation="vertical">
 
-                            <ImageView
-                                android:id="@+id/windDirectionImage"
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:src="@drawable/wind_direction" />
+                            <com.airbnb.lottie.LottieAnimationView
+                                android:id="@+id/lottieWindDirection"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:scaleType="centerCrop"
+                                app:lottie_rawRes="@raw/wind_direction_icon"
+                                app:lottie_autoPlay="true"
+                                app:lottie_loop="true" />
+
+<!--                            <ImageView-->
+<!--                                android:id="@+id/windDirectionImage"-->
+<!--                                android:layout_width="30dp"-->
+<!--                                android:layout_height="30dp"-->
+<!--                                android:src="@drawable/wind_direction" />-->
 
                             <TextView
                                 android:id="@+id/windDirectionText"
@@ -386,7 +431,7 @@
                     <androidx.cardview.widget.CardView
                         android:id="@+id/windGustSpeedCard"
                         android:layout_width="50dp"
-                        android:layout_height="100dp"
+                        android:layout_height="120dp"
                         android:layout_margin="5dp"
                         android:layout_weight="1"
                         app:cardBackgroundColor="@color/lighter_blue"
@@ -398,11 +443,14 @@
                             android:gravity="center"
                             android:orientation="vertical">
 
-                            <ImageView
-                                android:id="@+id/windGustSpeedImage"
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:src="@drawable/wind_gust_speed" />
+                            <com.airbnb.lottie.LottieAnimationView
+                                android:id="@+id/lottieWindGustSpeed"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:scaleType="centerCrop"
+                                app:lottie_rawRes="@raw/wind_gust_speed_icon"
+                                app:lottie_autoPlay="true"
+                                app:lottie_loop="true" />
 
                             <TextView
                                 android:id="@+id/windGustSpeedText"
@@ -537,6 +585,20 @@
                         app:cardBackgroundColor="@color/lighter_blue"
                         app:cardCornerRadius="10dp">
 
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                        <com.airbnb.lottie.LottieAnimationView
+                            android:id="@+id/lottieAirPressure"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            app:lottie_rawRes="@raw/air_pressure_bg"
+                            app:lottie_autoPlay="true"
+                            app:lottie_loop="true"
+                            android:alpha="0.7" />
+
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
@@ -569,6 +631,7 @@
                                 android:textColor="@color/black"
                                 android:textSize="12sp" />
                         </LinearLayout>
+                        </FrameLayout>
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
@@ -580,9 +643,24 @@
                         app:cardBackgroundColor="@color/lighter_blue"
                         app:cardCornerRadius="10dp">
 
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                        <com.airbnb.lottie.LottieAnimationView
+                            android:id="@+id/lottieGroundPressure"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="fitXY"
+                            app:lottie_rawRes="@raw/ground_level_pressure_icon"
+                            app:lottie_autoPlay="true"
+                            app:lottie_loop="true"
+                            android:alpha="0.3" />
+
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:layout_marginTop="5dp"
                             android:gravity="center"
                             android:orientation="vertical">
 
@@ -611,6 +689,7 @@
                                 android:textColor="@color/black"
                                 android:textSize="12sp" />
                         </LinearLayout>
+                        </FrameLayout>
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
@@ -621,6 +700,20 @@
                         android:layout_weight="1"
                         app:cardBackgroundColor="@color/lighter_blue"
                         app:cardCornerRadius="10dp">
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                        <com.airbnb.lottie.LottieAnimationView
+                            android:id="@+id/lottieSeaLevel"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            app:lottie_rawRes="@raw/sea_level"
+                            app:lottie_autoPlay="true"
+                            app:lottie_loop="true"
+                            android:alpha="0.3" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -653,6 +746,7 @@
                                 android:textColor="@color/black"
                                 android:textSize="12sp" />
                         </LinearLayout>
+                        </FrameLayout>
                     </androidx.cardview.widget.CardView>
                 </LinearLayout>
 
@@ -760,6 +854,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
                     android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp"
                     android:layout_marginEnd="15dp"
                     android:gravity="fill"
                     android:orientation="horizontal">
@@ -767,7 +862,7 @@
                     <androidx.cardview.widget.CardView
                         android:id="@+id/minTempCard"
                         android:layout_width="50dp"
-                        android:layout_height="100dp"
+                        android:layout_height="120dp"
                         android:layout_margin="5dp"
                         android:layout_weight="1"
                         app:cardBackgroundColor="@color/lighter_blue"
@@ -776,15 +871,23 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_marginTop="5dp"
                             android:gravity="center"
                             android:orientation="vertical">
 
-                            <ImageView
-                                android:id="@+id/minTempImage"
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:src="@drawable/min_temperature" />
+                            <com.airbnb.lottie.LottieAnimationView
+                                android:id="@+id/lottieMinTemp"
+                                android:layout_width="50dp"
+                                android:layout_height="60dp"
+                                android:scaleType="centerCrop"
+                                app:lottie_rawRes="@raw/min_temp_icon"
+                                app:lottie_autoPlay="true"
+                                app:lottie_loop="true" />
+
+<!--                            <ImageView-->
+<!--                                android:id="@+id/minTempImage"-->
+<!--                                android:layout_width="30dp"-->
+<!--                                android:layout_height="30dp"-->
+<!--                                android:src="@drawable/min_temperature" />-->
 
                             <TextView
                                 android:id="@+id/minTempText"
@@ -810,7 +913,7 @@
                     <androidx.cardview.widget.CardView
                         android:id="@+id/maxTempCard"
                         android:layout_width="50dp"
-                        android:layout_height="100dp"
+                        android:layout_height="120dp"
                         android:layout_margin="5dp"
                         android:layout_weight="1"
                         app:cardBackgroundColor="@color/lighter_blue"
@@ -822,11 +925,20 @@
                             android:gravity="center"
                             android:orientation="vertical">
 
-                            <ImageView
-                                android:id="@+id/maxTempImage"
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:src="@drawable/max_temperature" />
+                            <com.airbnb.lottie.LottieAnimationView
+                                android:id="@+id/lottieMaxTemp"
+                                android:layout_width="50dp"
+                                android:layout_height="60dp"
+                                android:scaleType="centerCrop"
+                                app:lottie_rawRes="@raw/max_temp_icon"
+                                app:lottie_autoPlay="true"
+                                app:lottie_loop="true" />
+
+<!--                            <ImageView-->
+<!--                                android:id="@+id/maxTempImage"-->
+<!--                                android:layout_width="30dp"-->
+<!--                                android:layout_height="30dp"-->
+<!--                                android:src="@drawable/max_temperature" />-->
 
                             <TextView
                                 android:id="@+id/maxTempText"

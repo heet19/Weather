@@ -1,10 +1,16 @@
 package com.example.weather
 
+import android.app.SearchManager
+import android.content.Context
+import android.content.Intent
 import android.icu.text.SimpleDateFormat
 import android.icu.util.TimeZone
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -19,6 +25,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.Date
 import java.util.Locale
+import androidx.appcompat.widget.SearchView
 
 class MainActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshListener {
 
@@ -28,148 +35,165 @@ class MainActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshListener {
         ActivityMainBinding.inflate(layoutInflater)
     }
 
-    lateinit var swipeRefreshLayout: SwipeRefreshLayout
+    private lateinit var swipeRefreshLayout: SwipeRefreshLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(binding.root)
 
+
+        // Set the toolbar as action bar
+        setSupportActionBar(binding.toolbarDetail)
+
         swipeRefreshLayout = binding.refreshSwipe
         swipeRefreshLayout.setOnRefreshListener(this)
 
-//        setSupportActionBar(binding.toolbarDetail)
-
-        fetchWeatherData()
+        fetchWeatherData("vapi")
 
     }
 
-    private fun fetchWeatherData() {
+    private fun fetchWeatherData(city: String) {
         val retrofit = Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
             .baseUrl("https://api.openweathermap.org/data/2.5/")
             .build()
             .create(APIInterface::class.java)
 
-        val response = retrofit.getWeatherData("rajkot", "47561fc40c887a4bbb468d6530937de1", "metric")
-        response.enqueue(object : Callback<WeatherData>{
+        val response = retrofit.getWeatherData(city, "47561fc40c887a4bbb468d6530937de1", "metric")
+        response.enqueue(object : Callback<WeatherData> {
             override fun onResponse(call: Call<WeatherData>, response: Response<WeatherData>) {
                 val responseBody = response.body()
                 if (response.isSuccessful && responseBody != null) {
+                    Log.d("onResponse", "onResponse: ")
+                    displayWeatherData(responseBody)
+                } else {
+                    val errorMessage = response.errorBody()?.string() ?: "Unknown Error"
+                    Log.e("API Error", errorMessage)
+                    Toast.makeText(this@MainActivity,"City not found: $errorMessage",Toast.LENGTH_LONG).show()
+                }
+            }
 
-                    val city = responseBody.name
-                    val longitude = responseBody.coord.lon
-                    val latitude = responseBody.coord.lat
+            override fun onFailure(call: Call<WeatherData>, response: Throwable) {
+                Log.e("API Error", "Failure: ${response.message}")
+                Toast.makeText(this@MainActivity,"Failed to fetch data: ${response.message}",Toast.LENGTH_LONG).show()
+            }
+        })
+    }
 
-//                    val icon = responseBody.weather.firstOrNull()?.icon
 
-                    val temperature = responseBody.main.temp
-                    val envDescription = responseBody.weather.firstOrNull()?.description ?: "No data"
-                    val feelsLike = responseBody.main.feels_like
-                    val humidity = responseBody.main.humidity
+    private fun displayWeatherData(responseBody: WeatherData) {
+        val city = responseBody.name
+        val longitude = responseBody.coord.lon
+        val latitude = responseBody.coord.lat
 
-                    val visibilityKm = responseBody.visibility / 1000.0
-                    val visibilityKmNew = String.format("%.2f", visibilityKm)
+//        val icon = responseBody.weather.firstOrNull()?.icon
 
-                    val windSpeed = responseBody.wind.speed * 3.6
-                    val windSpeedNew = String.format("%.2f", windSpeed)
+        val temperature = responseBody.main.temp
+        val envDescription = responseBody.weather.firstOrNull()?.description ?: "No data"
+        val feelsLike = responseBody.main.feels_like
+        val humidity = responseBody.main.humidity
 
-                    val windDirection = responseBody.wind.deg
+        val visibilityKm = responseBody.visibility / 1000.0
+        val visibilityKmNew = String.format("%.2f", visibilityKm)
 
-                    val windGustSpeed = responseBody.wind.gust * 3.6
-                    val windGustSpeedNew = String.format("%.2f", windGustSpeed)
+        val windSpeed = responseBody.wind.speed * 3.6
+        val windSpeedNew = String.format("%.2f", windSpeed)
 
-                    val pressure = responseBody.main.pressure
-                    val groundPressure = responseBody.main.grnd_level
-                    val seaLevel = responseBody.main.sea_level
+        val windDirection = responseBody.wind.deg
 
-                    val cloud = responseBody.clouds.all
-                    val clear = 100 - cloud
+        val windGustSpeed = responseBody.wind.gust * 3.6
+        val windGustSpeedNew = String.format("%.2f", windGustSpeed)
 
-                    val minTemperature = responseBody.main.temp_min
-                    val maxTemperature = responseBody.main.temp_max
+        val pressure = responseBody.main.pressure
+        val groundPressure = responseBody.main.grnd_level
+        val seaLevel = responseBody.main.sea_level
 
-                    val sunrise = responseBody.sys.sunrise
-                    val sunriseNew = convertUnixToTime(sunrise)
-                    val sunset = responseBody.sys.sunset
-                    val sunsetNew = convertUnixToTime(sunset)
+        val cloud = responseBody.clouds.all
+        val clear = 100 - cloud
 
-                    val weatherCondition = responseBody.weather.firstOrNull()?.description ?: "Clear"
+        val minTemperature = responseBody.main.temp_min
+        val maxTemperature = responseBody.main.temp_max
 
-                    fun getAnimationRes(weatherCondition: String): Int {
-                        return when (weatherCondition.lowercase()) {
+        val sunrise = responseBody.sys.sunrise
+        val sunriseNew = convertUnixToTime(sunrise)
+        val sunset = responseBody.sys.sunset
+        val sunsetNew = convertUnixToTime(sunset)
+
+        val weatherCondition = responseBody.weather.firstOrNull()?.description ?: "Clear"
+
+        fun getAnimationRes(weatherCondition: String): Int {
+            return when (weatherCondition.lowercase()) {
 //                            Clear Sky and Clouds
-                            "clear sky" -> R.raw.clear_sky
-                            "few clouds" -> R.raw.partly_cloudy
-                            "scattered clouds" -> R.raw.scattered_clouds
-                            "broken clouds" -> R.raw.windy
-                            "overcast clouds" -> R.raw.windy
+                "clear sky" -> R.raw.clear_sky
+                "few clouds" -> R.raw.partly_cloudy
+                "scattered clouds" -> R.raw.scattered_clouds
+                "broken clouds" -> R.raw.windy
+                "overcast clouds" -> R.raw.windy
 
 //                            Rain and Drizzle
-                            "light rain" -> R.raw.light_rain
-                            "moderate rain" -> R.raw.moderate_rain
-                            "heavy intensity rain" -> R.raw.heavy_intensity_rain
-                            "very heavy rain" -> R.raw.heavy_intensity_rain
-                            "extreme rain" -> R.raw.heavy_intensity_rain
-                            "freezing rain" -> R.raw.freezing_rain
-                            "light intensity shower rain" -> R.raw.foggy
-                            "shower rain" -> R.raw.shower_rain
-                            "heavy intensity shower rain" -> R.raw.shower_rain
-                            "ragged shower rain" -> R.raw.shower_rain
-                            "light drizzle" -> R.raw.light_drizzle
-                            "drizzle" -> R.raw.light_drizzle
-                            "heavy intensity drizzle" -> R.raw.light_drizzle
-                            "drizzle rain" -> R.raw.light_drizzle
-                            "heavy intensity drizzle rain" -> R.raw.light_drizzle
-                            "shower drizzle" -> R.raw.light_drizzle
+                "light rain" -> R.raw.light_rain
+                "moderate rain" -> R.raw.moderate_rain
+                "heavy intensity rain" -> R.raw.heavy_intensity_rain
+                "very heavy rain" -> R.raw.heavy_intensity_rain
+                "extreme rain" -> R.raw.heavy_intensity_rain
+                "freezing rain" -> R.raw.freezing_rain
+                "light intensity shower rain" -> R.raw.foggy
+                "shower rain" -> R.raw.shower_rain
+                "heavy intensity shower rain" -> R.raw.shower_rain
+                "ragged shower rain" -> R.raw.shower_rain
+                "light drizzle" -> R.raw.light_drizzle
+                "drizzle" -> R.raw.light_drizzle
+                "heavy intensity drizzle" -> R.raw.light_drizzle
+                "drizzle rain" -> R.raw.light_drizzle
+                "heavy intensity drizzle rain" -> R.raw.light_drizzle
+                "shower drizzle" -> R.raw.light_drizzle
 
 //                            Snow
-                            "light snow" -> R.raw.snow_sunny
-                            "snow" -> R.raw.snow
-                            "heavy snow" -> R.raw.snow
-                            "sleet" -> R.raw.sleet
-                            "light shower sleet" -> R.raw.sleet
-                            "shower sleet" -> R.raw.sleet
-                            "light rain and snow" -> R.raw.foggy
-                            "rain and snow" -> R.raw.sleet
-                            "light shower snow" -> R.raw.heavy_snow
-                            "shower snow" -> R.raw.heavy_snow
-                            "heavy shower snow" -> R.raw.heavy_snow
+                "light snow" -> R.raw.snow_sunny
+                "snow" -> R.raw.snow
+                "heavy snow" -> R.raw.snow
+                "sleet" -> R.raw.sleet
+                "light shower sleet" -> R.raw.sleet
+                "shower sleet" -> R.raw.sleet
+                "light rain and snow" -> R.raw.foggy
+                "rain and snow" -> R.raw.sleet
+                "light shower snow" -> R.raw.heavy_snow
+                "shower snow" -> R.raw.heavy_snow
+                "heavy shower snow" -> R.raw.heavy_snow
 
 //                            Thunderstorm
-                            "thunderstorm with light rain" -> R.raw.storm_showers_day
-                            "thunderstorm with rain" -> R.raw.storm_showers_day
-                            "thunderstorm with heavy rain" -> R.raw.thunder
-                            "light thunderstorm" -> R.raw.thunder
-                            "thunderstorm" -> R.raw.thunder
-                            "heavy thunderstorm" -> R.raw.thunder
-                            "ragged thunderstorm" -> R.raw.thunder
-                            "thunderstorm with light drizzle" -> R.raw.thunder_rain
-                            "thunderstorm with drizzle" -> R.raw.thunder_rain
-                            "thunderstorm with heavy drizzle" -> R.raw.thunder_rain
+                "thunderstorm with light rain" -> R.raw.storm_showers_day
+                "thunderstorm with rain" -> R.raw.storm_showers_day
+                "thunderstorm with heavy rain" -> R.raw.thunder
+                "light thunderstorm" -> R.raw.thunder
+                "thunderstorm" -> R.raw.thunder
+                "heavy thunderstorm" -> R.raw.thunder
+                "ragged thunderstorm" -> R.raw.thunder
+                "thunderstorm with light drizzle" -> R.raw.thunder_rain
+                "thunderstorm with drizzle" -> R.raw.thunder_rain
+                "thunderstorm with heavy drizzle" -> R.raw.thunder_rain
 
 //                            Atmospheric Conditions
-                            "mist" -> R.raw.mist_1
-                            "smoke" -> R.raw.foggy
-                            "haze" -> R.raw.mist
-                            "sand/dust whirls" -> R.raw.foggy
-                            "fog" -> R.raw.foggy
-                            "freezing fog" -> R.raw.foggy
+                "mist" -> R.raw.mist_1
+                "smoke" -> R.raw.foggy
+                "haze" -> R.raw.mist
+                "sand/dust whirls" -> R.raw.foggy
+                "fog" -> R.raw.foggy
+                "freezing fog" -> R.raw.foggy
 
 //                            Extreme Conditions
-                            "sand" -> R.raw.foggy
-                            "dust" -> R.raw.foggy
-                            "volcanic ash" -> R.raw.foggy
-                            "squalls" -> R.raw.foggy
-                            "tornado" -> R.raw.tornado
-                            else -> R.raw.galaxy_anim
-                        }
+                "sand" -> R.raw.foggy
+                "dust" -> R.raw.foggy
+                "volcanic ash" -> R.raw.foggy
+                "squalls" -> R.raw.foggy
+                "tornado" -> R.raw.tornado
+                else -> R.raw.galaxy_anim
+            }
+        }
 
-                    }
-
-                    binding.lottieAnimation.setAnimation(getAnimationRes(weatherCondition))
-                    binding.lottieAnimation.playAnimation()
-
+        binding.lottieAnimation.setAnimation(getAnimationRes(weatherCondition))
+        binding.lottieAnimation.playAnimation()
 
 //                   val apiIcon = if (icon != null) {
 //                        val iconUrl = "https://openweathermap.org/img/wn/${icon}@2x.png"
@@ -181,48 +205,39 @@ class MainActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshListener {
 //                       Toast.makeText(this@MainActivity, "Image is Not Available", Toast.LENGTH_SHORT).show()
 //                   }
 
-                    binding.mainCityName.text = city
-                    binding.mainLongitude.text = "Longitude: ${longitude}"
-                    binding.mainLatitude.text = "Latitude: ${latitude}"
-                    binding.mainTempDegree.text = "${temperature} \u00B0C"
-                    binding.mainEnv.text = envDescription
+        binding.mainCityName.text = city
+        binding.mainLongitude.text = "Longitude: ${longitude}"
+        binding.mainLatitude.text = "Latitude: ${latitude}"
+        binding.mainTempDegree.text = "${temperature} \u00B0C"
+        binding.mainEnv.text = envDescription
 
-                    binding.feelsLikeValue.text = "${feelsLike} °C"
-                    binding.humidityValue.text = "${humidity} %"
-                    binding.visibilityValue.text = "${visibilityKmNew} km/h"
+        binding.feelsLikeValue.text = "${feelsLike} °C"
+        binding.humidityValue.text = "${humidity} %"
+        binding.visibilityValue.text = "${visibilityKmNew} km/h"
 
-                    binding.windSpeedValue.text = "${windSpeedNew} km/h"
-                    binding.windDirectionValue.text = "${windDirection}°"
-                    binding.windGustSpeedValue.text = "${windGustSpeedNew} km/h"
+        binding.windSpeedValue.text = "${windSpeedNew} km/h"
+        binding.windDirectionValue.text = "${windDirection}°"
+        binding.windGustSpeedValue.text = "${windGustSpeedNew} km/h"
 
-                    binding.pressureValue.text = "${pressure} hPa"
-                    binding.groundLevelPressureValue.text = "${groundPressure} hPa"
-                    binding.seaLevelValue.text = "${seaLevel} hPa"
+        binding.pressureValue.text = "${pressure} hPa"
+        binding.groundLevelPressureValue.text = "${groundPressure} hPa"
+        binding.seaLevelValue.text = "${seaLevel} hPa"
 
-                    binding.cloudPB.max = 100
-                    binding.cloudPB.progress = cloud
-                    binding.cloudProgressBarInitialText2.text = "${clear} %"
-                    binding.cloudProgressBarFinalText2.text = "${cloud} %"
+        binding.cloudPB.max = 100
+        binding.cloudPB.progress = cloud
+        binding.cloudProgressBarInitialText2.text = "${clear} %"
+        binding.cloudProgressBarFinalText2.text = "${cloud} %"
 
-                    binding.minTempValue.text = "${minTemperature}  °C"
-                    binding.maxTempValue.text = "${maxTemperature}  °C"
+        binding.minTempValue.text = "${minTemperature}  °C"
+        binding.maxTempValue.text = "${maxTemperature}  °C"
 
-                    binding.sunRiseSetInitialText2.text = sunriseNew
-                    binding.sunRiseSetFinalText2.text = sunsetNew
+        binding.sunRiseSetInitialText2.text = sunriseNew
+        binding.sunRiseSetFinalText2.text = sunsetNew
 
-                    // Calculate and set progress
-                    val progress = calculateSunProgress(sunrise, sunset)
-                    binding.sunRiseSetPB.max = 100
-                    binding.sunRiseSetPB.progress = progress
-                }
-            }
-
-            override fun onFailure(call: Call<WeatherData>, response: Throwable) {
-                TODO("Not yet implemented")
-            }
-
-        })
-
+        // Calculate and set progress
+        val progress = calculateSunProgress(sunrise, sunset)
+        binding.sunRiseSetPB.max = 100
+        binding.sunRiseSetPB.progress = progress
     }
 
     fun convertUnixToTime(unixTimestamp: Int): String {
@@ -246,28 +261,55 @@ class MainActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshListener {
         }
     }
 
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu, menu)
+
+        // Get the SearchView
+        val searchItem = menu.findItem(R.id.search)
+        val searchView = searchItem.actionView as SearchView
+
+        searchView.queryHint = "Enter city name"
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                if (!query.isNullOrEmpty()) {
+                    Log.d("SearchQuery", "Search submitted: $query")
+                    fetchWeatherData(query)
+
+                    searchView.clearFocus()
+                    searchView.setQuery("", false)
+                    searchItem.collapseActionView()
+                }
+                return true
+            }
+            override fun onQueryTextChange(newText: String?): Boolean {
+                Log.d("SearchQuery", "Text changing: $newText")
+                return true
+            }
+        })
+        return true
+    }
+
+
+    // Handle Menu Item Clicks
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        Log.d("onOptionsItemSelected", "onOptionsItemSelected: ")
+        return when (item.itemId) {
+            R.id.search -> {
+                true
+            }
+            R.id.setting -> {
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
     override fun onRefresh() {
         Handler(Looper.getMainLooper()).postDelayed({
             Toast.makeText(this, "refreshing", Toast.LENGTH_SHORT).show()
-            fetchWeatherData()
+            fetchWeatherData("rajkot")
             swipeRefreshLayout.isRefreshing = false
         }, 1000)
     }
-
-//    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-//        menuInflater.inflate(R.menu.menu, menu)
-//        return true
-//    }
-
-//    // Handle Menu Item Clicks
-//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-//        return when (item.itemId) {
-//            R.id.search -> {
-//                // Handle Settings Click
-//                true
-//            }
-//            else -> super.onOptionsItemSelected(item)
-//        }
-//    }
 
 }

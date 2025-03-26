@@ -6,6 +6,15 @@
         android:id="@+id/search"
         android:title="Search"
         android:icon="@drawable/baseline_search_24"
-        app:showAsAction="always"/>
+        app:showAsAction="ifRoom|collapseActionView"
+        app:actionViewClass="androidx.appcompat.widget.SearchView" />
+
+    <item
+        android:id="@+id/setting"
+        android:title="Search"
+        android:icon="@drawable/baseline_settings_24"
+        app:showAsAction="ifRoom|collapseActionView"
+        app:actionViewClass="androidx.appcompat.widget.SearchView" />
+
 
 </menu>

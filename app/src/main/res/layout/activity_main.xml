@@ -20,7 +20,7 @@
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbarDetail"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:background="@color/neutral_grey"
         android:elevation="20dp"
         android:minHeight="?attr/actionBarSize"
@@ -42,7 +42,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/mainAToolbar">
 
-        <ScrollView
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nestedScrollView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginBottom="30dp"
@@ -526,6 +527,7 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="10dp"
                             android:indeterminate="false"
+                            android:thumb="@drawable/sun_icon"
                             android:max="10"
                             android:minHeight="8dp"
                             android:progress="1"
@@ -809,7 +811,7 @@
                             android:minHeight="8dp"
                             android:progress="1"
                             android:progressDrawable="@drawable/cloud_progressbar_bg"
-                            android:rotation="180"
+
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toStartOf="@id/cloudProgressBarFinalText1"
                             app:layout_constraintStart_toEndOf="@id/cloudProgressBarInitialText1"
@@ -965,7 +967,7 @@
                 </LinearLayout>
 
             </LinearLayout>
-        </ScrollView>
+        </androidx.core.widget.NestedScrollView>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

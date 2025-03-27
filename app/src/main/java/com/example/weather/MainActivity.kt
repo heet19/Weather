@@ -1,8 +1,8 @@
 package com.example.weather
 
-import android.app.SearchManager
-import android.content.Context
+import android.animation.ObjectAnimator
 import android.content.Intent
+import android.content.res.Resources
 import android.icu.text.SimpleDateFormat
 import android.icu.util.TimeZone
 import android.os.Bundle
@@ -35,6 +35,11 @@ class MainActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshListener {
         ActivityMainBinding.inflate(layoutInflater)
     }
 
+    private var currentCity: String = "rajkot"
+
+    private var isAnimationStartedSRSS = false
+    private var isAnimationStartedCSCS = false
+
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,18 +47,23 @@ class MainActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshListener {
         enableEdgeToEdge()
         setContentView(binding.root)
 
+        // Initialize preferences
+        UserPreferences.init(this)
 
         // Set the toolbar as action bar
         setSupportActionBar(binding.toolbarDetail)
 
+        currentCity = UserPreferences.lastCity
+        fetchWeatherData(currentCity)
+
         swipeRefreshLayout = binding.refreshSwipe
         swipeRefreshLayout.setOnRefreshListener(this)
-
-        fetchWeatherData("vapi")
 
     }
 
     private fun fetchWeatherData(city: String) {
+        currentCity = city
+        UserPreferences.setLastCity(this, city)
         val retrofit = Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
             .baseUrl("https://api.openweathermap.org/data/2.5/")
@@ -81,47 +91,49 @@ class MainActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshListener {
         })
     }
 
-
     private fun displayWeatherData(responseBody: WeatherData) {
         val city = responseBody.name
         val longitude = responseBody.coord.lon
         val latitude = responseBody.coord.lat
-
-//        val icon = responseBody.weather.firstOrNull()?.icon
-
         val temperature = responseBody.main.temp
         val envDescription = responseBody.weather.firstOrNull()?.description ?: "No data"
         val feelsLike = responseBody.main.feels_like
         val humidity = responseBody.main.humidity
-
-        val visibilityKm = responseBody.visibility / 1000.0
-        val visibilityKmNew = String.format("%.2f", visibilityKm)
-
-        val windSpeed = responseBody.wind.speed * 3.6
-        val windSpeedNew = String.format("%.2f", windSpeed)
-
+        val visibilityMeters = responseBody.visibility.toDouble()
+        val windSpeedMs = responseBody.wind.speed
         val windDirection = responseBody.wind.deg
-
-        val windGustSpeed = responseBody.wind.gust * 3.6
-        val windGustSpeedNew = String.format("%.2f", windGustSpeed)
-
-        val pressure = responseBody.main.pressure
-        val groundPressure = responseBody.main.grnd_level
-        val seaLevel = responseBody.main.sea_level
-
+        val windGustMs = responseBody.wind.gust
+        val pressureHpa = responseBody.main.pressure.toDouble()
+        val groundPressureHpa = responseBody.main.grnd_level?.toDouble() ?: 0.0
+        val seaLevelHpa = responseBody.main.sea_level?.toDouble() ?: 0.0
         val cloud = responseBody.clouds.all
         val clear = 100 - cloud
+        clearSkyProgress(clear)
 
         val minTemperature = responseBody.main.temp_min
         val maxTemperature = responseBody.main.temp_max
-
         val sunrise = responseBody.sys.sunrise
         val sunriseNew = convertUnixToTime(sunrise)
         val sunset = responseBody.sys.sunset
         val sunsetNew = convertUnixToTime(sunset)
-
         val weatherCondition = responseBody.weather.firstOrNull()?.description ?: "Clear"
 
+        // Convert units based on user preferences
+        val (tempValue, tempUnit) = UnitConverter.convertTemperature(temperature, UserPreferences.temperatureUnit)
+        val (feelsLikeValue, feelsLikeUnit) = UnitConverter.convertTemperature(feelsLike, UserPreferences.temperatureUnit)
+        val (minTempValue, minTempUnit) = UnitConverter.convertTemperature(minTemperature, UserPreferences.temperatureUnit)
+        val (maxTempValue, maxTempUnit) = UnitConverter.convertTemperature(maxTemperature, UserPreferences.temperatureUnit)
+
+        val (windSpeedValue, windSpeedUnit) = UnitConverter.convertWindSpeed(windSpeedMs, UserPreferences.windSpeedUnit)
+        val (windGustValue, windGustUnit) = UnitConverter.convertWindSpeed(windGustMs, UserPreferences.windSpeedUnit)
+
+        val (pressureValue, pressureUnit) = UnitConverter.convertPressure(pressureHpa, UserPreferences.pressureUnit)
+        val (groundPressureValue, groundPressureUnit) = UnitConverter.convertPressure(groundPressureHpa, UserPreferences.pressureUnit)
+        val (seaLevelValue, seaLevelUnit) = UnitConverter.convertPressure(seaLevelHpa, UserPreferences.pressureUnit)
+
+        val (visibilityValue, visibilityUnit) = UnitConverter.convertVisibility(visibilityMeters, UserPreferences.visibilityUnit)
+
+        // Set animation
         fun getAnimationRes(weatherCondition: String): Int {
             return when (weatherCondition.lowercase()) {
 //                            Clear Sky and Clouds
@@ -195,41 +207,32 @@ class MainActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshListener {
         binding.lottieAnimation.setAnimation(getAnimationRes(weatherCondition))
         binding.lottieAnimation.playAnimation()
 
-//                   val apiIcon = if (icon != null) {
-//                        val iconUrl = "https://openweathermap.org/img/wn/${icon}@2x.png"
-//                        Picasso.get()
-//                            .load(iconUrl)
-//                            .error(R.drawable.error_image)
-//                            .into(binding.mainWeatherImage)
-//                    } else {
-//                       Toast.makeText(this@MainActivity, "Image is Not Available", Toast.LENGTH_SHORT).show()
-//                   }
-
+        // Update UI with converted values
         binding.mainCityName.text = city
         binding.mainLongitude.text = "Longitude: ${longitude}"
         binding.mainLatitude.text = "Latitude: ${latitude}"
-        binding.mainTempDegree.text = "${temperature} \u00B0C"
+        binding.mainTempDegree.text = "${String.format("%.1f", tempValue)} $tempUnit"
         binding.mainEnv.text = envDescription
 
-        binding.feelsLikeValue.text = "${feelsLike} °C"
+        binding.feelsLikeValue.text = "${String.format("%.1f", feelsLikeValue)} $feelsLikeUnit"
         binding.humidityValue.text = "${humidity} %"
-        binding.visibilityValue.text = "${visibilityKmNew} km/h"
+        binding.visibilityValue.text = "${String.format("%.1f", visibilityValue)} $visibilityUnit"
 
-        binding.windSpeedValue.text = "${windSpeedNew} km/h"
+        binding.windSpeedValue.text = "${String.format("%.1f", windSpeedValue)} $windSpeedUnit"
         binding.windDirectionValue.text = "${windDirection}°"
-        binding.windGustSpeedValue.text = "${windGustSpeedNew} km/h"
+        binding.windGustSpeedValue.text = "${String.format("%.1f", windGustValue)} $windGustUnit"
 
-        binding.pressureValue.text = "${pressure} hPa"
-        binding.groundLevelPressureValue.text = "${groundPressure} hPa"
-        binding.seaLevelValue.text = "${seaLevel} hPa"
+        binding.pressureValue.text = "${String.format("%.1f", pressureValue)} $pressureUnit"
+        binding.groundLevelPressureValue.text = "${String.format("%.1f", groundPressureValue)} $groundPressureUnit"
+        binding.seaLevelValue.text = "${String.format("%.1f", seaLevelValue)} $seaLevelUnit"
 
         binding.cloudPB.max = 100
-        binding.cloudPB.progress = cloud
+        binding.cloudPB.progress = clear
         binding.cloudProgressBarInitialText2.text = "${clear} %"
         binding.cloudProgressBarFinalText2.text = "${cloud} %"
 
-        binding.minTempValue.text = "${minTemperature}  °C"
-        binding.maxTempValue.text = "${maxTemperature}  °C"
+        binding.minTempValue.text = "${String.format("%.1f", minTempValue)} $minTempUnit"
+        binding.maxTempValue.text = "${String.format("%.1f", maxTempValue)} $maxTempUnit"
 
         binding.sunRiseSetInitialText2.text = sunriseNew
         binding.sunRiseSetFinalText2.text = sunsetNew
@@ -238,7 +241,63 @@ class MainActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshListener {
         val progress = calculateSunProgress(sunrise, sunset)
         binding.sunRiseSetPB.max = 100
         binding.sunRiseSetPB.progress = progress
+        sunriseSunsetProgress(progress)
+
     }
+
+    private fun clearSkyProgress(clear: Int) {
+        binding.nestedScrollView.viewTreeObserver.addOnScrollChangedListener {
+            if (!isAnimationStartedCSCS) { // Check if animation has already run
+                val location = IntArray(2)
+                binding.cloudProgressBarCard.getLocationOnScreen(location)
+                val screenHeight = Resources.getSystem().displayMetrics.heightPixels
+                val viewTop = location[1]
+                if (viewTop in 0..screenHeight) { // If visible
+                    isAnimationStartedCSCS = true // Set flag to true
+                    startProgressAnimationCSCS(clear.toFloat())
+                }
+            }
+        }
+
+    }
+
+    private fun startProgressAnimationCSCS(till: Float) {
+        val animator = ObjectAnimator.ofFloat(1f, till) // Use Float values explicitly
+        animator.duration = 3500 // 10 seconds
+        animator.addUpdateListener { animation ->
+            val animatedValue = animation.animatedValue as Float // Ensure Float type
+            binding.cloudPB.progress = animatedValue.toInt() // Convert to Int safely
+        }
+        animator.start()
+
+    }
+
+    private fun sunriseSunsetProgress(progress: Int) {
+        binding.nestedScrollView.viewTreeObserver.addOnScrollChangedListener {
+            if (!isAnimationStartedSRSS) { // Check if animation has already run
+                val location = IntArray(2)
+                binding.sunRiseSetCard.getLocationOnScreen(location)
+                val screenHeight = Resources.getSystem().displayMetrics.heightPixels
+                val viewTop = location[1]
+                if (viewTop in 0..screenHeight) { // If visible
+                    isAnimationStartedSRSS = true // Set flag to true
+                    startProgressAnimationSRSS(progress.toFloat())
+                }
+            }
+        }
+    }
+
+    private fun startProgressAnimationSRSS(till: Float) {
+        val animator = ObjectAnimator.ofFloat(1f, till) // Use Float values explicitly
+        animator.duration = 1500 // 10 seconds
+        animator.addUpdateListener { animation ->
+            val animatedValue = animation.animatedValue as Float // Ensure Float type
+            binding.sunRiseSetPB.progress = animatedValue.toInt() // Convert to Int safely
+        }
+        animator.start()
+    }
+
+
 
     fun convertUnixToTime(unixTimestamp: Int): String {
         val date = Date(unixTimestamp.toLong() * 1000)
@@ -273,6 +332,7 @@ class MainActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 if (!query.isNullOrEmpty()) {
                     Log.d("SearchQuery", "Search submitted: $query")
+                    currentCity = query
                     fetchWeatherData(query)
 
                     searchView.clearFocus()
@@ -289,15 +349,15 @@ class MainActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshListener {
         return true
     }
 
-
     // Handle Menu Item Clicks
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        Log.d("onOptionsItemSelected", "onOptionsItemSelected: ")
+        Log.d("onOptionsItemSelected", "Selected Item: ${item.title}")
         return when (item.itemId) {
             R.id.search -> {
                 true
             }
             R.id.setting -> {
+                startActivity(Intent(this@MainActivity, SettingActivity::class.java))
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -307,7 +367,7 @@ class MainActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshListener {
     override fun onRefresh() {
         Handler(Looper.getMainLooper()).postDelayed({
             Toast.makeText(this, "refreshing", Toast.LENGTH_SHORT).show()
-            fetchWeatherData("rajkot")
+            fetchWeatherData(currentCity)
             swipeRefreshLayout.isRefreshing = false
         }, 1000)
     }

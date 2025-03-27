@@ -7,7 +7,6 @@ import retrofit2.http.Query
 
 interface APIInterface {
 
-
     @GET("weather")
     fun getWeatherData(
         @Query("q") city:String,

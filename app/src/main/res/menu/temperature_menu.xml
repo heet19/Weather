@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/tMenuCelsius"
+        android:title="Celsius (°C)"/>
+
+    <item
+        android:id="@+id/tMenuFahrenheit"
+        android:title="Fahrenheit (°F)"/>
+
+    <item
+        android:id="@+id/tMenuKelvin"
+        android:title="Kelvin (°K)"/>
+
+</menu>

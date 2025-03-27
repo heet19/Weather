@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/aMenuHectopascals"
+        android:title="Hectopascals (hPa)"/>
+
+    <item
+        android:id="@+id/aMenuMilliMeters"
+        android:title="Millimeters of mercury (mmHg)"/>
+
+    <item
+        android:id="@+id/aMenuInches"
+        android:title="Inches of mercury (inHg)"/>
+
+    <item
+        android:id="@+id/aMenuMillibars"
+        android:title="Millibars (mb)"/>
+
+    <item
+        android:id="@+id/aMenuPounds"
+        android:title="Pounds per square inch (psi)"/>
+
+</menu>

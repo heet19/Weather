@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/vMenuKilometers"
+        android:title="Kilometers (km)"/>
+
+    <item
+        android:id="@+id/vMenuMiles"
+        android:title="Miles (mi)"/>
+
+    <item
+        android:id="@+id/vMenuMetres"
+        android:title="Metres (m)"/>
+
+    <item
+        android:id="@+id/vMenuFeet"
+        android:title="Feet (ft)"/>
+
+</menu>

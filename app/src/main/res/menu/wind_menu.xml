@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/wMenuKilometers"
+        android:title="Kilometers per hour (km/h)" />
+
+    <item
+        android:id="@+id/wMenuMeters"
+        android:title="Meters per second (m/s)" />
+
+    <item
+        android:id="@+id/wMenuFeet"
+        android:title="Feet per second (ft/s)" />
+
+    <item
+        android:id="@+id/wMenuMiles"
+        android:title="Miles per hour (mph)" />
+
+    <item
+        android:id="@+id/wMenuNautical"
+        android:title="Nautical miles per hour (knots)" />
+
+</menu>

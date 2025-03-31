@@ -8,7 +8,7 @@
     android:background="@color/dark_blue"
     tools:context=".MainActivity">
 
-<!--    ToolBar   -->
+    <!--    ToolBar   -->
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/mainAToolbar"
         android:layout_width="match_parent"
@@ -17,29 +17,29 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/toolbarDetail"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/neutral_grey"
-        android:elevation="20dp"
-        android:minHeight="?attr/actionBarSize"
-        android:paddingStart="10dp"
-        android:paddingTop="30dp"
-        android:paddingEnd="10dp"
-        android:paddingBottom="5dp"
-        app:title="Forecast"
-        app:titleCentered="false"
-        app:titleTextColor="@color/black" />
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbarDetail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/neutral_grey"
+            android:elevation="20dp"
+            android:minHeight="?attr/actionBarSize"
+            android:paddingStart="10dp"
+            android:paddingTop="30dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="5dp"
+            app:title="Forecast"
+            app:titleCentered="false"
+            app:titleTextColor="@color/black" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/refreshSwipe"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/mainAToolbar">
 
         <androidx.core.widget.NestedScrollView
@@ -81,7 +81,7 @@
                             android:layout_marginTop="20dp"
                             android:text="Bhilad"
                             android:textColor="@color/white"
-                            android:textSize="24sp"
+                            android:textSize="26sp"
                             android:textStyle="bold"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
@@ -94,7 +94,7 @@
                             android:layout_marginTop="5dp"
                             android:text="Longitude: 72.9049"
                             android:textColor="@color/white"
-                            android:textSize="14sp"
+                            android:textSize="12sp"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/mainCityName" />
 
@@ -104,31 +104,30 @@
                             android:layout_height="wrap_content"
                             android:text="Latitude: 20.3749"
                             android:textColor="@color/white"
-                            android:textSize="14sp"
+                            android:textSize="12sp"
                             app:layout_constraintStart_toStartOf="@id/mainLongitude"
                             app:layout_constraintTop_toBottomOf="@id/mainLongitude" />
 
                         <com.airbnb.lottie.LottieAnimationView
                             android:id="@+id/lottieAnimation"
                             android:layout_width="0dp"
-                            android:layout_height="100dp"
-                            android:layout_marginTop="25dp"
+                            android:layout_height="wrap_content"
                             android:elevation="10dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/mainLatitude"
                             app:lottie_autoPlay="true"
-                            app:lottie_loop="true"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/mainLatitude"/>
+                            app:lottie_loop="true" />
 
-                        <ImageView
-                            android:id="@+id/mainWeatherImage"
-                            android:layout_width="0dp"
-                            android:layout_height="100dp"
-                            android:layout_marginTop="25dp"
-                            android:elevation="10dp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/mainLatitude" />
+<!--                        <ImageView-->
+<!--                            android:id="@+id/mainWeatherImage"-->
+<!--                            android:layout_width="0dp"-->
+<!--                            android:layout_height="100dp"-->
+<!--                            android:layout_marginTop="25dp"-->
+<!--                            android:elevation="10dp"-->
+<!--                            app:layout_constraintEnd_toEndOf="parent"-->
+<!--                            app:layout_constraintStart_toStartOf="parent"-->
+<!--                            app:layout_constraintTop_toBottomOf="@+id/mainLatitude" />-->
 
                         <TextView
                             android:id="@+id/mainTempDegree"
@@ -141,13 +140,12 @@
                             android:textStyle="bold"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/mainWeatherImage" />
+                            app:layout_constraintTop_toBottomOf="@+id/lottieAnimation" />
 
                         <TextView
                             android:id="@+id/mainEnv"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
                             android:layout_marginBottom="20dp"
                             android:text="Sunny"
                             android:textColor="@color/white"
@@ -159,6 +157,53 @@
                             app:layout_constraintTop_toBottomOf="@+id/mainTempDegree" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    app:cardBackgroundColor="@color/lightest_blue"
+                    app:cardCornerRadius="10dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="15dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="4"
+                                android:text="24 Hour Forecast"
+                                android:textSize="14sp"/>
+
+                            <ImageView
+                                android:id="@+id/showTFDetails"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0"
+                                android:src="@drawable/baseline_arrow_forward_24"/>
+                        </LinearLayout>
+
+                        <com.google.android.material.divider.MaterialDivider
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            app:dividerColor="@color/lighter_blue"/>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/mainTodayForecastRV"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:padding="5dp"
+                        tools:listitem="@layout/today_forecast"/>
+                    </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
                 <LinearLayout
@@ -174,7 +219,7 @@
                     <androidx.cardview.widget.CardView
                         android:id="@+id/feelsLikeCard"
                         android:layout_width="50dp"
-                        android:layout_height="120dp"
+                        android:layout_height="130dp"
                         android:layout_margin="5dp"
                         android:layout_weight="1"
                         app:cardBackgroundColor="@color/lighter_blue"
@@ -183,6 +228,7 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:padding="5dp"
                             android:gravity="center"
                             android:orientation="vertical">
 
@@ -191,15 +237,15 @@
                                 android:layout_width="50dp"
                                 android:layout_height="50dp"
                                 android:scaleType="centerCrop"
-                                app:lottie_rawRes="@raw/temperature_icon"
                                 app:lottie_autoPlay="true"
-                                app:lottie_loop="true" />
+                                app:lottie_loop="true"
+                                app:lottie_rawRes="@raw/temperature_icon" />
 
-<!--                            <ImageView-->
-<!--                                android:id="@+id/feelsLikeImage"-->
-<!--                                android:layout_width="30dp"-->
-<!--                                android:layout_height="30dp"-->
-<!--                                android:src="@drawable/feels_like" />-->
+                            <!--                            <ImageView-->
+                            <!--                                android:id="@+id/feelsLikeImage"-->
+                            <!--                                android:layout_width="30dp"-->
+                            <!--                                android:layout_height="30dp"-->
+                            <!--                                android:src="@drawable/feels_like" />-->
 
                             <TextView
                                 android:id="@+id/feelsLikeText"
@@ -223,7 +269,7 @@
                     <androidx.cardview.widget.CardView
                         android:id="@+id/humidityCard"
                         android:layout_width="50dp"
-                        android:layout_height="120dp"
+                        android:layout_height="130dp"
                         android:layout_margin="5dp"
                         android:layout_weight="1"
                         app:cardBackgroundColor="@color/lighter_blue"
@@ -232,6 +278,7 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:padding="5dp"
                             android:gravity="center"
                             android:orientation="vertical">
 
@@ -240,15 +287,15 @@
                                 android:layout_width="50dp"
                                 android:layout_height="50dp"
                                 android:scaleType="centerCrop"
-                                app:lottie_rawRes="@raw/humidity_icon"
                                 app:lottie_autoPlay="true"
-                                app:lottie_loop="true" />
+                                app:lottie_loop="true"
+                                app:lottie_rawRes="@raw/humidity_icon" />
 
-<!--                            <ImageView-->
-<!--                                android:id="@+id/humidityImage"-->
-<!--                                android:layout_width="30dp"-->
-<!--                                android:layout_height="30dp"-->
-<!--                                android:src="@drawable/humiditys" />-->
+                            <!--                            <ImageView-->
+                            <!--                                android:id="@+id/humidityImage"-->
+                            <!--                                android:layout_width="30dp"-->
+                            <!--                                android:layout_height="30dp"-->
+                            <!--                                android:src="@drawable/humiditys" />-->
 
                             <TextView
                                 android:id="@+id/humidityText"
@@ -272,7 +319,7 @@
                     <androidx.cardview.widget.CardView
                         android:id="@+id/visibilityCard"
                         android:layout_width="50dp"
-                        android:layout_height="120dp"
+                        android:layout_height="130dp"
                         android:layout_margin="5dp"
                         android:layout_weight="1"
                         app:cardBackgroundColor="@color/lighter_blue"
@@ -281,6 +328,7 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:padding="5dp"
                             android:gravity="center"
                             android:orientation="vertical">
 
@@ -289,15 +337,15 @@
                                 android:layout_width="50dp"
                                 android:layout_height="50dp"
                                 android:scaleType="centerCrop"
-                                app:lottie_rawRes="@raw/visibility_icon"
                                 app:lottie_autoPlay="true"
-                                app:lottie_loop="true" />
+                                app:lottie_loop="true"
+                                app:lottie_rawRes="@raw/visibility_icon" />
 
-<!--                            <ImageView-->
-<!--                                android:id="@+id/visibilityImage"-->
-<!--                                android:layout_width="30dp"-->
-<!--                                android:layout_height="30dp"-->
-<!--                                android:src="@drawable/visibility" />-->
+                            <!--                            <ImageView-->
+                            <!--                                android:id="@+id/visibilityImage"-->
+                            <!--                                android:layout_width="30dp"-->
+                            <!--                                android:layout_height="30dp"-->
+                            <!--                                android:src="@drawable/visibility" />-->
 
                             <TextView
                                 android:id="@+id/visibilityText"
@@ -331,7 +379,7 @@
                     <androidx.cardview.widget.CardView
                         android:id="@+id/windSpeedCard"
                         android:layout_width="50dp"
-                        android:layout_height="120dp"
+                        android:layout_height="130dp"
                         android:layout_margin="5dp"
                         android:layout_weight="1"
                         app:cardBackgroundColor="@color/lighter_blue"
@@ -340,7 +388,7 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_marginTop="5dp"
+                            android:padding="5dp"
                             android:gravity="center"
                             android:orientation="vertical">
 
@@ -349,15 +397,15 @@
                                 android:layout_width="50dp"
                                 android:layout_height="50dp"
                                 android:scaleType="centerCrop"
-                                app:lottie_rawRes="@raw/wind_speed_icon"
                                 app:lottie_autoPlay="true"
-                                app:lottie_loop="true" />
+                                app:lottie_loop="true"
+                                app:lottie_rawRes="@raw/wind_speed_icon" />
 
-<!--                            <ImageView-->
-<!--                                android:id="@+id/windSpeedImage"-->
-<!--                                android:layout_width="30dp"-->
-<!--                                android:layout_height="30dp"-->
-<!--                                android:src="@drawable/wind_speed" />-->
+                            <!--                            <ImageView-->
+                            <!--                                android:id="@+id/windSpeedImage"-->
+                            <!--                                android:layout_width="30dp"-->
+                            <!--                                android:layout_height="30dp"-->
+                            <!--                                android:src="@drawable/wind_speed" />-->
 
                             <TextView
                                 android:id="@+id/windSpeedText"
@@ -383,7 +431,7 @@
                     <androidx.cardview.widget.CardView
                         android:id="@+id/windDirectionCard"
                         android:layout_width="50dp"
-                        android:layout_height="120dp"
+                        android:layout_height="130dp"
                         android:layout_margin="5dp"
                         android:layout_weight="1"
                         app:cardBackgroundColor="@color/lighter_blue"
@@ -393,6 +441,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="center"
+                            android:padding="5dp"
                             android:orientation="vertical">
 
                             <com.airbnb.lottie.LottieAnimationView
@@ -400,15 +449,15 @@
                                 android:layout_width="50dp"
                                 android:layout_height="50dp"
                                 android:scaleType="centerCrop"
-                                app:lottie_rawRes="@raw/wind_direction_icon"
                                 app:lottie_autoPlay="true"
-                                app:lottie_loop="true" />
+                                app:lottie_loop="true"
+                                app:lottie_rawRes="@raw/wind_direction_icon" />
 
-<!--                            <ImageView-->
-<!--                                android:id="@+id/windDirectionImage"-->
-<!--                                android:layout_width="30dp"-->
-<!--                                android:layout_height="30dp"-->
-<!--                                android:src="@drawable/wind_direction" />-->
+                            <!--                            <ImageView-->
+                            <!--                                android:id="@+id/windDirectionImage"-->
+                            <!--                                android:layout_width="30dp"-->
+                            <!--                                android:layout_height="30dp"-->
+                            <!--                                android:src="@drawable/wind_direction" />-->
 
                             <TextView
                                 android:id="@+id/windDirectionText"
@@ -434,7 +483,7 @@
                     <androidx.cardview.widget.CardView
                         android:id="@+id/windGustSpeedCard"
                         android:layout_width="50dp"
-                        android:layout_height="120dp"
+                        android:layout_height="130dp"
                         android:layout_margin="5dp"
                         android:layout_weight="1"
                         app:cardBackgroundColor="@color/lighter_blue"
@@ -444,6 +493,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="center"
+                            android:padding="5dp"
                             android:orientation="vertical">
 
                             <com.airbnb.lottie.LottieAnimationView
@@ -451,9 +501,9 @@
                                 android:layout_width="50dp"
                                 android:layout_height="50dp"
                                 android:scaleType="centerCrop"
-                                app:lottie_rawRes="@raw/wind_gust_speed_icon"
                                 app:lottie_autoPlay="true"
-                                app:lottie_loop="true" />
+                                app:lottie_loop="true"
+                                app:lottie_rawRes="@raw/wind_gust_speed_icon" />
 
                             <TextView
                                 android:id="@+id/windGustSpeedText"
@@ -527,11 +577,11 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="10dp"
                             android:indeterminate="false"
-                            android:thumb="@drawable/sun_icon"
                             android:max="10"
                             android:minHeight="8dp"
                             android:progress="1"
                             android:progressDrawable="@drawable/sun_progressbar_bg"
+                            android:thumb="@drawable/sun_icon"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toStartOf="@id/sunRiseSetFinalText2"
                             app:layout_constraintStart_toEndOf="@id/sunRiseSetInitialText2"
@@ -583,7 +633,7 @@
                     <androidx.cardview.widget.CardView
                         android:id="@+id/pressureCard"
                         android:layout_width="50dp"
-                        android:layout_height="100dp"
+                        android:layout_height="120dp"
                         android:layout_margin="5dp"
                         android:layout_weight="1"
                         app:cardBackgroundColor="@color/lighter_blue"
@@ -593,55 +643,55 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
 
-                        <com.airbnb.lottie.LottieAnimationView
-                            android:id="@+id/lottieAirPressure"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:scaleType="centerCrop"
-                            app:lottie_rawRes="@raw/air_pressure_bg"
-                            app:lottie_autoPlay="true"
-                            app:lottie_loop="true"
-                            android:alpha="0.7" />
+                            <com.airbnb.lottie.LottieAnimationView
+                                android:id="@+id/lottieAirPressure"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:alpha="0.7"
+                                android:scaleType="centerCrop"
+                                app:lottie_autoPlay="true"
+                                app:lottie_loop="true"
+                                app:lottie_rawRes="@raw/air_pressure_bg" />
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginTop="5dp"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <ImageView
-                                android:id="@+id/pressureImage"
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:src="@drawable/air_pressure" />
-
-                            <TextView
-                                android:id="@+id/pressureText"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="7dp"
-                                android:text="Air Pressure"
-                                android:textAlignment="center"
-                                android:textColor="@color/black"
-                                android:textSize="12sp" />
-
-                            <TextView
-                                android:id="@+id/pressureValue"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
                                 android:layout_marginTop="5dp"
-                                android:textAlignment="center"
-                                android:textColor="@color/black"
-                                android:textSize="12sp" />
-                        </LinearLayout>
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:id="@+id/pressureImage"
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:src="@drawable/air_pressure" />
+
+                                <TextView
+                                    android:id="@+id/pressureText"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="7dp"
+                                    android:text="Air Pressure"
+                                    android:textAlignment="center"
+                                    android:textColor="@color/black"
+                                    android:textSize="12sp" />
+
+                                <TextView
+                                    android:id="@+id/pressureValue"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="5dp"
+                                    android:textAlignment="center"
+                                    android:textColor="@color/black"
+                                    android:textSize="12sp" />
+                            </LinearLayout>
                         </FrameLayout>
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/groundLevelPressureCard"
                         android:layout_width="50dp"
-                        android:layout_height="100dp"
+                        android:layout_height="120dp"
                         android:layout_margin="5dp"
                         android:layout_weight="1"
                         app:cardBackgroundColor="@color/lighter_blue"
@@ -651,55 +701,55 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
 
-                        <com.airbnb.lottie.LottieAnimationView
-                            android:id="@+id/lottieGroundPressure"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:scaleType="fitXY"
-                            app:lottie_rawRes="@raw/ground_level_pressure_icon"
-                            app:lottie_autoPlay="true"
-                            app:lottie_loop="true"
-                            android:alpha="0.3" />
+                            <com.airbnb.lottie.LottieAnimationView
+                                android:id="@+id/lottieGroundPressure"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:alpha="0.3"
+                                android:scaleType="fitXY"
+                                app:lottie_autoPlay="true"
+                                app:lottie_loop="true"
+                                app:lottie_rawRes="@raw/ground_level_pressure_icon" />
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginTop="5dp"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <ImageView
-                                android:id="@+id/groundLevelPressureImage"
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:src="@drawable/ground_pressure" />
-
-                            <TextView
-                                android:id="@+id/groundLevelPressureText"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="7dp"
-                                android:text="Ground Level Pressure"
-                                android:textAlignment="center"
-                                android:textColor="@color/black"
-                                android:textSize="12sp" />
-
-                            <TextView
-                                android:id="@+id/groundLevelPressureValue"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
                                 android:layout_marginTop="5dp"
-                                android:textAlignment="center"
-                                android:textColor="@color/black"
-                                android:textSize="12sp" />
-                        </LinearLayout>
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:id="@+id/groundLevelPressureImage"
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:src="@drawable/ground_pressure" />
+
+                                <TextView
+                                    android:id="@+id/groundLevelPressureText"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="7dp"
+                                    android:text="Ground Level Pressure"
+                                    android:textAlignment="center"
+                                    android:textColor="@color/black"
+                                    android:textSize="12sp" />
+
+                                <TextView
+                                    android:id="@+id/groundLevelPressureValue"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="5dp"
+                                    android:textAlignment="center"
+                                    android:textColor="@color/black"
+                                    android:textSize="12sp" />
+                            </LinearLayout>
                         </FrameLayout>
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/seaLevelCard"
                         android:layout_width="50dp"
-                        android:layout_height="100dp"
+                        android:layout_height="120dp"
                         android:layout_margin="5dp"
                         android:layout_weight="1"
                         app:cardBackgroundColor="@color/lighter_blue"
@@ -709,47 +759,47 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
 
-                        <com.airbnb.lottie.LottieAnimationView
-                            android:id="@+id/lottieSeaLevel"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:scaleType="centerCrop"
-                            app:lottie_rawRes="@raw/sea_level"
-                            app:lottie_autoPlay="true"
-                            app:lottie_loop="true"
-                            android:alpha="0.3" />
+                            <com.airbnb.lottie.LottieAnimationView
+                                android:id="@+id/lottieSeaLevel"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:alpha="0.3"
+                                android:scaleType="centerCrop"
+                                app:lottie_autoPlay="true"
+                                app:lottie_loop="true"
+                                app:lottie_rawRes="@raw/sea_level" />
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:gravity="center"
-                            android:orientation="vertical">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:orientation="vertical">
 
-                            <ImageView
-                                android:id="@+id/seaLevelImage"
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:src="@drawable/sea_level" />
+                                <ImageView
+                                    android:id="@+id/seaLevelImage"
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:src="@drawable/sea_level" />
 
-                            <TextView
-                                android:id="@+id/seaLevelText"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="7dp"
-                                android:text="Sea Level"
-                                android:textAlignment="center"
-                                android:textColor="@color/black"
-                                android:textSize="12sp" />
+                                <TextView
+                                    android:id="@+id/seaLevelText"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="7dp"
+                                    android:text="Sea Level"
+                                    android:textAlignment="center"
+                                    android:textColor="@color/black"
+                                    android:textSize="12sp" />
 
-                            <TextView
-                                android:id="@+id/seaLevelValue"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:textAlignment="center"
-                                android:textColor="@color/black"
-                                android:textSize="12sp" />
-                        </LinearLayout>
+                                <TextView
+                                    android:id="@+id/seaLevelValue"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="5dp"
+                                    android:textAlignment="center"
+                                    android:textColor="@color/black"
+                                    android:textSize="12sp" />
+                            </LinearLayout>
                         </FrameLayout>
                     </androidx.cardview.widget.CardView>
                 </LinearLayout>
@@ -858,15 +908,15 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
                     android:layout_marginTop="15dp"
-                    android:layout_marginBottom="15dp"
                     android:layout_marginEnd="15dp"
+                    android:layout_marginBottom="15dp"
                     android:gravity="fill"
                     android:orientation="horizontal">
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/minTempCard"
                         android:layout_width="50dp"
-                        android:layout_height="120dp"
+                        android:layout_height="100dp"
                         android:layout_margin="5dp"
                         android:layout_weight="1"
                         app:cardBackgroundColor="@color/lighter_blue"
@@ -876,48 +926,50 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="center"
-                            android:orientation="vertical">
+                            android:padding="5dp"
+                            android:orientation="horizontal">
 
                             <com.airbnb.lottie.LottieAnimationView
                                 android:id="@+id/lottieMinTemp"
                                 android:layout_width="50dp"
                                 android:layout_height="60dp"
                                 android:scaleType="centerCrop"
-                                app:lottie_rawRes="@raw/min_temp_icon"
                                 app:lottie_autoPlay="true"
-                                app:lottie_loop="true" />
+                                app:lottie_loop="true"
+                                app:lottie_rawRes="@raw/min_temp_icon" />
 
-<!--                            <ImageView-->
-<!--                                android:id="@+id/minTempImage"-->
-<!--                                android:layout_width="30dp"-->
-<!--                                android:layout_height="30dp"-->
-<!--                                android:src="@drawable/min_temperature" />-->
-
-                            <TextView
-                                android:id="@+id/minTempText"
+                            <LinearLayout
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="7dp"
-                                android:text="Minimum Temperature"
-                                android:textAlignment="center"
-                                android:textColor="@color/black"
-                                android:textSize="12sp" />
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:orientation="vertical">
 
-                            <TextView
-                                android:id="@+id/minTempValue"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:textAlignment="center"
-                                android:textColor="@color/black"
-                                android:textSize="12sp" />
+                                <TextView
+                                    android:id="@+id/minTempText"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="5dp"
+                                    android:text="Minimum Temperature"
+                                    android:textAlignment="center"
+                                    android:textColor="@color/black"
+                                    android:textSize="12sp" />
+
+                                <TextView
+                                    android:id="@+id/minTempValue"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="7dp"
+                                    android:textAlignment="center"
+                                    android:textColor="@color/black"
+                                    android:textSize="12sp" />
+                            </LinearLayout>
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/maxTempCard"
                         android:layout_width="50dp"
-                        android:layout_height="120dp"
+                        android:layout_height="100dp"
                         android:layout_margin="5dp"
                         android:layout_weight="1"
                         app:cardBackgroundColor="@color/lighter_blue"
@@ -927,41 +979,43 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="center"
-                            android:orientation="vertical">
+                            android:padding="5dp"
+                            android:orientation="horizontal">
 
                             <com.airbnb.lottie.LottieAnimationView
                                 android:id="@+id/lottieMaxTemp"
                                 android:layout_width="50dp"
                                 android:layout_height="60dp"
                                 android:scaleType="centerCrop"
-                                app:lottie_rawRes="@raw/max_temp_icon"
                                 app:lottie_autoPlay="true"
-                                app:lottie_loop="true" />
+                                app:lottie_loop="true"
+                                app:lottie_rawRes="@raw/max_temp_icon" />
 
-<!--                            <ImageView-->
-<!--                                android:id="@+id/maxTempImage"-->
-<!--                                android:layout_width="30dp"-->
-<!--                                android:layout_height="30dp"-->
-<!--                                android:src="@drawable/max_temperature" />-->
-
-                            <TextView
-                                android:id="@+id/maxTempText"
+                            <LinearLayout
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="7dp"
-                                android:text="Maximum Temperature"
-                                android:textAlignment="center"
-                                android:textColor="@color/black"
-                                android:textSize="12sp" />
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:orientation="vertical">
 
-                            <TextView
-                                android:id="@+id/maxTempValue"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:textAlignment="center"
-                                android:textColor="@color/black"
-                                android:textSize="12sp" />
+                                <TextView
+                                    android:id="@+id/maxTempText"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="5dp"
+                                    android:text="Maximum Temperature"
+                                    android:textAlignment="center"
+                                    android:textColor="@color/black"
+                                    android:textSize="12sp" />
+
+                                <TextView
+                                    android:id="@+id/maxTempValue"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="7dp"
+                                    android:textAlignment="center"
+                                    android:textColor="@color/black"
+                                    android:textSize="12sp" />
+                            </LinearLayout>
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
                 </LinearLayout>

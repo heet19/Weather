@@ -27,7 +27,7 @@ class SettingActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener {
         updateUnitLabels()
 
         binding.btnBackSetting.setOnClickListener {
-
+            finish()
         }
 
         binding.settingTemperature.setOnClickListener {

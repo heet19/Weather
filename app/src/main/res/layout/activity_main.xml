@@ -21,7 +21,7 @@
             android:id="@+id/toolbarDetail"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/neutral_grey"
+            android:background="@color/dark_blue"
             android:elevation="20dp"
             android:minHeight="?attr/actionBarSize"
             android:paddingStart="10dp"
@@ -30,8 +30,16 @@
             android:paddingBottom="5dp"
             app:title="Forecast"
             app:titleCentered="false"
-            app:titleTextColor="@color/black" />
+            app:titleTextColor="@color/neutral_white" />
     </com.google.android.material.appbar.AppBarLayout>
+
+    <com.google.android.material.divider.MaterialDivider
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        app:dividerColor="@color/lighter_blue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/mainAToolbar"/>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/refreshSwipe"
@@ -187,7 +195,7 @@
                                 android:id="@+id/showTFDetails"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_weight="0"
+                                android:layout_weight="1"
                                 android:src="@drawable/baseline_arrow_forward_24"/>
                         </LinearLayout>
 

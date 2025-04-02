@@ -4,9 +4,7 @@ import android.animation.ObjectAnimator
 import android.content.Intent
 import android.content.res.Resources
 import android.icu.text.SimpleDateFormat
-import android.icu.util.Currency
 import android.icu.util.TimeZone
-
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -32,7 +30,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.weather.todayforecast.TodayWeatherData
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
-
 
 class MainActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshListener {
 
@@ -78,6 +75,13 @@ class MainActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshListener {
 
         swipeRefreshLayout = binding.refreshSwipe
         swipeRefreshLayout.setOnRefreshListener(this)
+
+        binding.showTFDetails.setOnClickListener {
+            val intent = Intent(this, TodayForecastDetails::class.java)
+            intent.putExtra("CityName", currentCity)
+            intent.putParcelableArrayListExtra("WeatherData", todayWeatherDataArrayList)
+            startActivity(intent)
+        }
     }
 
     private fun fetchTodayForecast(city : String) {
@@ -132,10 +136,21 @@ class MainActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshListener {
                 val description = forecast.weather.firstOrNull()?.description
                 val animation = getAnimationRes(description ?: "")
                 val temperature = forecast.main.temp.toString()
+                val feelsLike = forecast.main.feels_like
+                val windDeg = forecast.wind.deg
+                val windSpeed = forecast.wind.speed
+                val humidity = forecast.main.humidity
+                val visibility = forecast.visibility
+                val clouds = forecast.clouds.all
+                val pop = forecast.pop
+                val minTemp = forecast.main.temp_min
+                val maxTemp = forecast.main.temp_max
+                val seaLevel = forecast.main.sea_level
 
-                hourlyList.add(TodayModel(timePart, temperature, animation))
+                hourlyList.add(TodayModel(timePart, temperature, animation, description!!, feelsLike, windDeg, windSpeed, humidity, visibility, clouds, pop, minTemp, maxTemp, seaLevel))
             }
         }
+        Log.e("errorrrrr", "${hourlyList}" )
 
         // Update the list and notify adapter
         todayWeatherDataArrayList.clear()

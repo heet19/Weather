@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/main_bg"
     tools:context=".TodayForecastDetails">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -19,7 +20,7 @@
             android:id="@+id/toolbarDetail"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/neutral_grey"
+            android:background="#FBD8BC"
             android:elevation="20dp"
             android:minHeight="?attr/actionBarSize"
             android:paddingStart="10dp"
@@ -30,10 +31,18 @@
             app:titleTextColor="@color/black" />
     </com.google.android.material.appbar.AppBarLayout>
 
+    <com.google.android.material.divider.MaterialDivider
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        app:dividerColor="#E89F5E"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/mainAToolbar"/>
+
     <ImageView
         android:id="@+id/btnBackTFD"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_marginStart="25dp"
         android:layout_marginBottom="15dp"
         android:src="@drawable/baseline_arrow_back_24"
@@ -44,11 +53,8 @@
         android:id="@+id/settingUnit"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginStart="10dp"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="30dp"
-        app:cardBackgroundColor="@color/lighter_blue"
+        android:background="@drawable/main_card_bg"
         app:cardCornerRadius="20dp"
         app:cardElevation="30dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -59,21 +65,14 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@drawable/main_card_bg"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Hourly Weather"
-                    android:textColor="@color/black"
-                    android:textSize="18sp" />
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/todayFDLocation"
@@ -82,17 +81,20 @@
                     android:layout_weight="1"
                     android:lines="2"
                     android:text="Bhilad, Gujarat, India"
-                    android:textColor="@color/black"
-                    android:textSize="14sp" />
+                    android:textStyle="bold|italic"
+                    android:textAllCaps="true"
+                    android:textColor="#303346"
+                    android:textSize="22sp" />
 
                 <TextView
+                    android:id="@+id/todayTimeDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_weight="0"
                     android:lines="2"
                     android:text="Monday 1 April"
                     android:textStyle="bold"
-                    android:textColor="@color/black"
+                    android:textColor="#303346"
                     android:textSize="18sp" />
 
             </LinearLayout>
@@ -100,13 +102,12 @@
             <com.google.android.material.divider.MaterialDivider
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
-                app:dividerColor="@color/light_blue" />
+                app:dividerColor="#303346" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/mainTodayDetailForecastRV"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
                 tools:listitem="@layout/today_detail_forecast" />
 
         </LinearLayout>

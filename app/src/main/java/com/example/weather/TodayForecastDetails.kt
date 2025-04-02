@@ -6,6 +6,8 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.weather.databinding.ActivityTodayForecastDetailsBinding
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 class TodayForecastDetails : AppCompatActivity() {
 
@@ -28,6 +30,8 @@ class TodayForecastDetails : AppCompatActivity() {
         val cityName = intent.getStringExtra("CityName")
         binding.todayFDLocation.text = cityName
 
+        binding.todayTimeDate.text = getCurrentDate()
+
         todayDetailFCAdapter = TodayDetailFCAdapter(this, todayDetailFCAdapterArrayList)
         binding.mainTodayDetailForecastRV.adapter = todayDetailFCAdapter
         binding.mainTodayDetailForecastRV.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
@@ -40,6 +44,10 @@ class TodayForecastDetails : AppCompatActivity() {
         }
 
         Log.d("TodayForecastDetails", "onCreate: Data loaded - ${todayDetailFCAdapterArrayList.size} items")
+    }
+
+    private fun getCurrentDate(): String {
+        return LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
     }
 
 }

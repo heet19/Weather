@@ -6,6 +6,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/main_bg"
     tools:context=".SettingActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -20,7 +21,7 @@
             android:id="@+id/toolbarDetail"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/neutral_grey"
+            android:background="#FBD8BC"
             android:elevation="20dp"
             android:minHeight="?attr/actionBarSize"
             android:paddingStart="10dp"
@@ -31,10 +32,18 @@
             app:titleTextColor="@color/black" />
     </com.google.android.material.appbar.AppBarLayout>
 
+    <com.google.android.material.divider.MaterialDivider
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        app:dividerColor="#E89F5E"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/mainAToolbar"/>
+
     <ImageView
         android:id="@+id/btnBackSetting"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_marginStart="25dp"
         android:layout_marginBottom="15dp"
         android:src="@drawable/baseline_arrow_back_24"
@@ -48,7 +57,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
-        app:cardBackgroundColor="@color/light_blue"
+        android:background="@drawable/main_card_bg"
         app:cardCornerRadius="20dp"
         app:cardElevation="30dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -58,6 +67,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@drawable/main_card_bg"
             android:orientation="vertical">
 
             <LinearLayout
@@ -73,7 +83,7 @@
                     android:padding="10dp"
                     android:layout_weight="1"
                     android:text="Temperature"
-                    android:textColor="@color/white"
+                    android:textColor="#303346"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -84,7 +94,7 @@
                     android:paddingTop="10dp"
                     android:paddingEnd="10dp"
                     android:paddingBottom="10dp"
-                    android:textColor="@color/white"
+                    android:textColor="#303346"
                     android:textSize="16sp" />
 
                 <ImageView
@@ -101,7 +111,7 @@
                 android:layout_height="2dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
-                app:dividerColor="@color/white"/>
+                app:dividerColor="#303346"/>
 
             <LinearLayout
                 android:id="@+id/settingWind"
@@ -116,7 +126,7 @@
                     android:padding="10dp"
                     android:layout_weight="1"
                     android:text="Wind"
-                    android:textColor="@color/white"
+                    android:textColor="#303346"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -127,7 +137,7 @@
                     android:paddingTop="10dp"
                     android:paddingEnd="10dp"
                     android:paddingBottom="10dp"
-                    android:textColor="@color/white"
+                    android:textColor="#303346"
                     android:textSize="16sp" />
 
                 <ImageView
@@ -144,7 +154,7 @@
                 android:layout_height="2dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
-                app:dividerColor="@color/white"/>
+                app:dividerColor="#303346"/>
 
             <LinearLayout
                 android:id="@+id/settingAir"
@@ -159,7 +169,7 @@
                     android:padding="10dp"
                     android:layout_weight="1"
                     android:text="Air"
-                    android:textColor="@color/white"
+                    android:textColor="#303346"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -170,7 +180,7 @@
                     android:paddingTop="10dp"
                     android:paddingEnd="10dp"
                     android:paddingBottom="10dp"
-                    android:textColor="@color/white"
+                    android:textColor="#303346"
                     android:textSize="16sp" />
 
                 <ImageView
@@ -187,7 +197,7 @@
                 android:layout_height="2dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
-                app:dividerColor="@color/white"/>
+                app:dividerColor="#303346"/>
 
             <LinearLayout
                 android:id="@+id/settingVisibility"
@@ -202,7 +212,7 @@
                     android:padding="10dp"
                     android:layout_weight="1"
                     android:text="Visibility"
-                    android:textColor="@color/white"
+                    android:textColor="#303346"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -213,7 +223,7 @@
                     android:paddingTop="10dp"
                     android:paddingEnd="10dp"
                     android:paddingBottom="10dp"
-                    android:textColor="@color/white"
+                    android:textColor="#303346"
                     android:textSize="16sp" />
 
                 <ImageView

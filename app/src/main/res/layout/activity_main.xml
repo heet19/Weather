@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/dark_blue"
+    android:background="@drawable/main_bg"
     tools:context=".MainActivity">
 
     <!--    ToolBar   -->
@@ -13,6 +13,7 @@
         android:id="@+id/mainAToolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:elevation="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -21,7 +22,7 @@
             android:id="@+id/toolbarDetail"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/dark_blue"
+            android:background="#FBD8BC"
             android:elevation="20dp"
             android:minHeight="?attr/actionBarSize"
             android:paddingStart="10dp"
@@ -30,13 +31,13 @@
             android:paddingBottom="5dp"
             app:title="Forecast"
             app:titleCentered="false"
-            app:titleTextColor="@color/neutral_white" />
+            app:titleTextColor="@color/black" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <com.google.android.material.divider.MaterialDivider
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        app:dividerColor="@color/lighter_blue"
+        app:dividerColor="#E89F5E"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/mainAToolbar"/>
@@ -73,13 +74,14 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="20dp"
                     android:layout_marginEnd="10dp"
-                    app:cardBackgroundColor="@color/light_blue"
+                    android:background="@drawable/main_card_bg"
                     app:cardCornerRadius="20dp"
                     app:cardElevation="30dp">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:background="@drawable/main_card_bg">
 
                         <TextView
                             android:id="@+id/mainCityName"
@@ -88,7 +90,7 @@
                             android:layout_marginStart="15dp"
                             android:layout_marginTop="20dp"
                             android:text="Bhilad"
-                            android:textColor="@color/white"
+                            android:textColor="#303346"
                             android:textSize="26sp"
                             android:textStyle="bold"
                             app:layout_constraintStart_toStartOf="parent"
@@ -101,7 +103,7 @@
                             android:layout_marginStart="15dp"
                             android:layout_marginTop="5dp"
                             android:text="Longitude: 72.9049"
-                            android:textColor="@color/white"
+                            android:textColor="#303346"
                             android:textSize="12sp"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/mainCityName" />
@@ -111,7 +113,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Latitude: 20.3749"
-                            android:textColor="@color/white"
+                            android:textColor="#303346"
                             android:textSize="12sp"
                             app:layout_constraintStart_toStartOf="@id/mainLongitude"
                             app:layout_constraintTop_toBottomOf="@id/mainLongitude" />
@@ -143,7 +145,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="15dp"
                             android:text="32"
-                            android:textColor="@color/white"
+                            android:textColor="#303346"
                             android:textSize="50sp"
                             android:textStyle="bold"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -156,7 +158,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="20dp"
                             android:text="Sunny"
-                            android:textColor="@color/white"
+                            android:textColor="#303346"
                             android:textSize="30sp"
                             android:textStyle="bold"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -170,7 +172,11 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="15dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginBottom="15dp"
+                    app:cardElevation="5dp"
                     app:cardBackgroundColor="@color/lightest_blue"
                     app:cardCornerRadius="10dp">
                     <LinearLayout
@@ -230,7 +236,7 @@
                         android:layout_height="130dp"
                         android:layout_margin="5dp"
                         android:layout_weight="1"
-                        app:cardBackgroundColor="@color/lighter_blue"
+                        app:cardBackgroundColor="#FDE1CB"
                         app:cardCornerRadius="10dp">
 
                         <LinearLayout
@@ -249,12 +255,6 @@
                                 app:lottie_loop="true"
                                 app:lottie_rawRes="@raw/temperature_icon" />
 
-                            <!--                            <ImageView-->
-                            <!--                                android:id="@+id/feelsLikeImage"-->
-                            <!--                                android:layout_width="30dp"-->
-                            <!--                                android:layout_height="30dp"-->
-                            <!--                                android:src="@drawable/feels_like" />-->
-
                             <TextView
                                 android:id="@+id/feelsLikeText"
                                 android:layout_width="wrap_content"
@@ -270,6 +270,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="5dp"
                                 android:textColor="@color/black"
+                                android:textStyle="bold"
                                 android:textSize="12sp" />
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
@@ -280,7 +281,7 @@
                         android:layout_height="130dp"
                         android:layout_margin="5dp"
                         android:layout_weight="1"
-                        app:cardBackgroundColor="@color/lighter_blue"
+                        app:cardBackgroundColor="#FDE1CB"
                         app:cardCornerRadius="10dp">
 
                         <LinearLayout
@@ -299,12 +300,6 @@
                                 app:lottie_loop="true"
                                 app:lottie_rawRes="@raw/humidity_icon" />
 
-                            <!--                            <ImageView-->
-                            <!--                                android:id="@+id/humidityImage"-->
-                            <!--                                android:layout_width="30dp"-->
-                            <!--                                android:layout_height="30dp"-->
-                            <!--                                android:src="@drawable/humiditys" />-->
-
                             <TextView
                                 android:id="@+id/humidityText"
                                 android:layout_width="wrap_content"
@@ -320,6 +315,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="5dp"
                                 android:textColor="@color/black"
+                                android:textStyle="bold"
                                 android:textSize="12sp" />
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
@@ -330,7 +326,7 @@
                         android:layout_height="130dp"
                         android:layout_margin="5dp"
                         android:layout_weight="1"
-                        app:cardBackgroundColor="@color/lighter_blue"
+                        app:cardBackgroundColor="#FDE1CB"
                         app:cardCornerRadius="10dp">
 
                         <LinearLayout
@@ -349,12 +345,6 @@
                                 app:lottie_loop="true"
                                 app:lottie_rawRes="@raw/visibility_icon" />
 
-                            <!--                            <ImageView-->
-                            <!--                                android:id="@+id/visibilityImage"-->
-                            <!--                                android:layout_width="30dp"-->
-                            <!--                                android:layout_height="30dp"-->
-                            <!--                                android:src="@drawable/visibility" />-->
-
                             <TextView
                                 android:id="@+id/visibilityText"
                                 android:layout_width="wrap_content"
@@ -370,6 +360,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="5dp"
                                 android:textColor="@color/black"
+                                android:textStyle="bold"
                                 android:textSize="12sp" />
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
@@ -390,7 +381,7 @@
                         android:layout_height="130dp"
                         android:layout_margin="5dp"
                         android:layout_weight="1"
-                        app:cardBackgroundColor="@color/lighter_blue"
+                        app:cardBackgroundColor="#FDE1CB"
                         app:cardCornerRadius="10dp">
 
                         <LinearLayout
@@ -409,12 +400,6 @@
                                 app:lottie_loop="true"
                                 app:lottie_rawRes="@raw/wind_speed_icon" />
 
-                            <!--                            <ImageView-->
-                            <!--                                android:id="@+id/windSpeedImage"-->
-                            <!--                                android:layout_width="30dp"-->
-                            <!--                                android:layout_height="30dp"-->
-                            <!--                                android:src="@drawable/wind_speed" />-->
-
                             <TextView
                                 android:id="@+id/windSpeedText"
                                 android:layout_width="wrap_content"
@@ -432,6 +417,7 @@
                                 android:layout_marginTop="5dp"
                                 android:textAlignment="center"
                                 android:textColor="@color/black"
+                                android:textStyle="bold"
                                 android:textSize="12sp" />
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
@@ -442,7 +428,7 @@
                         android:layout_height="130dp"
                         android:layout_margin="5dp"
                         android:layout_weight="1"
-                        app:cardBackgroundColor="@color/lighter_blue"
+                        app:cardBackgroundColor="#FDE1CB"
                         app:cardCornerRadius="10dp">
 
                         <LinearLayout
@@ -461,12 +447,6 @@
                                 app:lottie_loop="true"
                                 app:lottie_rawRes="@raw/wind_direction_icon" />
 
-                            <!--                            <ImageView-->
-                            <!--                                android:id="@+id/windDirectionImage"-->
-                            <!--                                android:layout_width="30dp"-->
-                            <!--                                android:layout_height="30dp"-->
-                            <!--                                android:src="@drawable/wind_direction" />-->
-
                             <TextView
                                 android:id="@+id/windDirectionText"
                                 android:layout_width="wrap_content"
@@ -484,6 +464,7 @@
                                 android:layout_marginTop="5dp"
                                 android:textAlignment="center"
                                 android:textColor="@color/black"
+                                android:textStyle="bold"
                                 android:textSize="12sp" />
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
@@ -494,7 +475,7 @@
                         android:layout_height="130dp"
                         android:layout_margin="5dp"
                         android:layout_weight="1"
-                        app:cardBackgroundColor="@color/lighter_blue"
+                        app:cardBackgroundColor="#FDE1CB"
                         app:cardCornerRadius="10dp">
 
                         <LinearLayout
@@ -530,6 +511,7 @@
                                 android:layout_marginTop="5dp"
                                 android:textAlignment="center"
                                 android:textColor="@color/black"
+                                android:textStyle="bold"
                                 android:textSize="12sp" />
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
@@ -575,6 +557,7 @@
                             android:paddingBottom="10dp"
                             android:textColor="@color/dark_blue"
                             android:textSize="14sp"
+                            android:textStyle="bold"
                             app:layout_constraintStart_toStartOf="@+id/sunRiseSetInitialText1"
                             app:layout_constraintTop_toBottomOf="@id/sunRiseSetInitialText1" />
 
@@ -622,6 +605,7 @@
                             android:paddingBottom="10dp"
                             android:textColor="@color/dark_blue"
                             android:textSize="14sp"
+                            android:textStyle="bold"
                             app:layout_constraintEnd_toEndOf="@+id/sunRiseSetFinalText1"
                             app:layout_constraintTop_toBottomOf="@id/sunRiseSetFinalText1" />
 
@@ -644,7 +628,7 @@
                         android:layout_height="120dp"
                         android:layout_margin="5dp"
                         android:layout_weight="1"
-                        app:cardBackgroundColor="@color/lighter_blue"
+                        app:cardBackgroundColor="#FDE1CB"
                         app:cardCornerRadius="10dp">
 
                         <FrameLayout
@@ -655,7 +639,7 @@
                                 android:id="@+id/lottieAirPressure"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:alpha="0.7"
+                                android:alpha="0.4"
                                 android:scaleType="centerCrop"
                                 app:lottie_autoPlay="true"
                                 app:lottie_loop="true"
@@ -691,6 +675,7 @@
                                     android:layout_marginTop="5dp"
                                     android:textAlignment="center"
                                     android:textColor="@color/black"
+                                    android:textStyle="bold"
                                     android:textSize="12sp" />
                             </LinearLayout>
                         </FrameLayout>
@@ -702,7 +687,7 @@
                         android:layout_height="120dp"
                         android:layout_margin="5dp"
                         android:layout_weight="1"
-                        app:cardBackgroundColor="@color/lighter_blue"
+                        app:cardBackgroundColor="#FDE1CB"
                         app:cardCornerRadius="10dp">
 
                         <FrameLayout
@@ -713,7 +698,7 @@
                                 android:id="@+id/lottieGroundPressure"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:alpha="0.3"
+                                android:alpha="0.1"
                                 android:scaleType="fitXY"
                                 app:lottie_autoPlay="true"
                                 app:lottie_loop="true"
@@ -749,6 +734,7 @@
                                     android:layout_marginTop="5dp"
                                     android:textAlignment="center"
                                     android:textColor="@color/black"
+                                    android:textStyle="bold"
                                     android:textSize="12sp" />
                             </LinearLayout>
                         </FrameLayout>
@@ -760,7 +746,7 @@
                         android:layout_height="120dp"
                         android:layout_margin="5dp"
                         android:layout_weight="1"
-                        app:cardBackgroundColor="@color/lighter_blue"
+                        app:cardBackgroundColor="#FDE1CB"
                         app:cardCornerRadius="10dp">
 
                         <FrameLayout
@@ -771,7 +757,7 @@
                                 android:id="@+id/lottieSeaLevel"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:alpha="0.3"
+                                android:alpha="0.1"
                                 android:scaleType="centerCrop"
                                 app:lottie_autoPlay="true"
                                 app:lottie_loop="true"
@@ -806,6 +792,7 @@
                                     android:layout_marginTop="5dp"
                                     android:textAlignment="center"
                                     android:textColor="@color/black"
+                                    android:textStyle="bold"
                                     android:textSize="12sp" />
                             </LinearLayout>
                         </FrameLayout>
@@ -853,6 +840,7 @@
                             android:layout_height="match_parent"
                             android:paddingBottom="10dp"
                             android:text="0%"
+                            android:textStyle="bold"
                             android:textColor="@color/dark_blue"
                             android:textSize="14sp"
                             app:layout_constraintStart_toStartOf="@+id/cloudProgressBarInitialText1"
@@ -902,6 +890,7 @@
                             android:layout_height="match_parent"
                             android:paddingBottom="10dp"
                             android:text="100%"
+                            android:textStyle="bold"
                             android:textColor="@color/dark_blue"
                             android:textSize="14sp"
                             app:layout_constraintEnd_toEndOf="@+id/cloudProgressBarFinalText1"
@@ -927,7 +916,7 @@
                         android:layout_height="100dp"
                         android:layout_margin="5dp"
                         android:layout_weight="1"
-                        app:cardBackgroundColor="@color/lighter_blue"
+                        app:cardBackgroundColor="#FDE1CB"
                         app:cardCornerRadius="10dp">
 
                         <LinearLayout
@@ -935,6 +924,7 @@
                             android:layout_height="match_parent"
                             android:gravity="center"
                             android:padding="5dp"
+                            android:background="@drawable/min_temp_bg"
                             android:orientation="horizontal">
 
                             <com.airbnb.lottie.LottieAnimationView
@@ -969,6 +959,7 @@
                                     android:layout_marginTop="7dp"
                                     android:textAlignment="center"
                                     android:textColor="@color/black"
+                                    android:textStyle="bold"
                                     android:textSize="12sp" />
                             </LinearLayout>
                         </LinearLayout>
@@ -980,7 +971,7 @@
                         android:layout_height="100dp"
                         android:layout_margin="5dp"
                         android:layout_weight="1"
-                        app:cardBackgroundColor="@color/lighter_blue"
+                        app:cardBackgroundColor="#E59148"
                         app:cardCornerRadius="10dp">
 
                         <LinearLayout
@@ -988,6 +979,7 @@
                             android:layout_height="match_parent"
                             android:gravity="center"
                             android:padding="5dp"
+                            android:background="@drawable/max_temp_bg"
                             android:orientation="horizontal">
 
                             <com.airbnb.lottie.LottieAnimationView
@@ -1022,6 +1014,7 @@
                                     android:layout_marginTop="7dp"
                                     android:textAlignment="center"
                                     android:textColor="@color/black"
+                                    android:textStyle="bold"
                                     android:textSize="12sp" />
                             </LinearLayout>
                         </LinearLayout>

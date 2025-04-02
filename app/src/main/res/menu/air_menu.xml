@@ -3,7 +3,7 @@
 
     <item
         android:id="@+id/aMenuHectopascals"
-        android:title="Hectopascals (hPa)"/>
+        android:title="Hectopascals (hPa)" />
 
     <item
         android:id="@+id/aMenuMilliMeters"

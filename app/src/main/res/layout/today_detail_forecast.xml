@@ -5,14 +5,16 @@
     android:id="@+id/todayDetailFC"
     android:layout_height="wrap_content"
     android:layout_marginStart="10dp"
-    android:layout_marginTop="20dp"
+    android:layout_marginTop="5dp"
     android:layout_marginEnd="10dp"
+    android:layout_marginBottom="5dp"
     android:animateLayoutChanges="true"
-    app:cardBackgroundColor="@color/light_blue"
+    app:cardBackgroundColor="#FCAE73"
     app:cardCornerRadius="10dp"
     app:cardElevation="30dp">
 
     <LinearLayout
+        android:id="@+id/todayTimeLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -30,7 +32,7 @@
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:text="17:30"
-                android:textColor="@color/black"
+                android:textColor="#303346"
                 android:textSize="14sp" />
 
             <TextView
@@ -41,10 +43,10 @@
                 android:layout_weight="1"
                 android:text="35°"
                 android:textStyle="bold"
-                android:textColor="@color/black"
+                android:textColor="#303346"
                 android:textSize="14sp" />
 
-            <ImageView
+            <com.airbnb.lottie.LottieAnimationView
                 android:id="@+id/todayDIcon"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
@@ -66,7 +68,7 @@
             android:layout_width="match_parent"
             android:layout_height="2dp"
             android:layout_marginBottom="5dp"
-            app:dividerColor="@color/lighter_blue" />
+            app:dividerColor="#FDE1CB" />
 
             <TextView
                 android:id="@+id/todayDFDescription"
@@ -75,8 +77,9 @@
                 android:layout_margin="10dp"
                 android:visibility="gone"
                 android:text="Sunny"
+                android:textAllCaps="true"
                 android:textStyle="bold"
-                android:textColor="@color/black"
+                android:textColor="#303346"
                 android:textSize="16sp" />
 
             <com.google.android.material.divider.MaterialDivider
@@ -84,7 +87,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
                 android:visibility="gone"
-                app:dividerColor="@color/lighter_blue" />
+                app:dividerColor="#FDE1CB" />
 
             <GridLayout
                 android:id="@+id/gridLayoutMain"
@@ -118,7 +121,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Feels Like"
-                            android:textColor="@color/black"
+                            android:textColor="#303346"
                             android:textSize="14sp" />
 
                         <TextView
@@ -127,7 +130,7 @@
                             android:layout_height="wrap_content"
                             android:text="27°"
                             android:textStyle="bold"
-                            android:textColor="@color/black"
+                            android:textColor="#303346"
                             android:textSize="16sp" />
 
                     </LinearLayout>
@@ -155,7 +158,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Wind"
-                            android:textColor="@color/black"
+                            android:textColor="#303346"
                             android:textSize="14sp" />
 
                         <TextView
@@ -164,7 +167,7 @@
                             android:layout_height="wrap_content"
                             android:text="336°"
                             android:textStyle="bold"
-                            android:textColor="@color/black"
+                            android:textColor="#303346"
                             android:textSize="16sp" />
 
                         <TextView
@@ -173,7 +176,7 @@
                             android:layout_height="wrap_content"
                             android:text="16 km/h"
                             android:textStyle="bold"
-                            android:textColor="@color/black"
+                            android:textColor="#303346"
                             android:textSize="16sp" />
                     </LinearLayout>
                 </LinearLayout>
@@ -200,7 +203,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Humidity"
-                            android:textColor="@color/black"
+                            android:textColor="#303346"
                             android:textSize="14sp" />
 
                         <TextView
@@ -209,7 +212,7 @@
                             android:layout_height="wrap_content"
                             android:text="16%"
                             android:textStyle="bold"
-                            android:textColor="@color/black"
+                            android:textColor="#303346"
                             android:textSize="16sp" />
                     </LinearLayout>
                 </LinearLayout>
@@ -236,7 +239,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Visibility"
-                            android:textColor="@color/black"
+                            android:textColor="#303346"
                             android:textSize="14sp" />
 
                         <TextView
@@ -245,7 +248,7 @@
                             android:layout_height="wrap_content"
                             android:text="16 km"
                             android:textStyle="bold"
-                            android:textColor="@color/black"
+                            android:textColor="#303346"
                             android:textSize="16sp" />
                     </LinearLayout>
                 </LinearLayout>
@@ -272,7 +275,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Cloud Cover"
-                            android:textColor="@color/black"
+                            android:textColor="#303346"
                             android:textSize="14sp" />
 
                         <TextView
@@ -281,7 +284,7 @@
                             android:layout_height="wrap_content"
                             android:text="4%"
                             android:textStyle="bold"
-                            android:textColor="@color/black"
+                            android:textColor="#303346"
                             android:textSize="16sp" />
                     </LinearLayout>
                 </LinearLayout>
@@ -309,7 +312,7 @@
                             android:layout_height="wrap_content"
                             android:text="Probability of precipitation (0-1)"
                             android:maxLines="2"
-                            android:textColor="@color/black"
+                            android:textColor="#303346"
                             android:textSize="14sp" />
 
                         <TextView
@@ -318,7 +321,7 @@
                             android:layout_height="wrap_content"
                             android:text="0.2"
                             android:textStyle="bold"
-                            android:textColor="@color/black"
+                            android:textColor="#303346"
                             android:textSize="16sp" />
                     </LinearLayout>
                 </LinearLayout>
@@ -346,7 +349,7 @@
                             android:layout_height="wrap_content"
                             android:text="Temperature"
                             android:maxLines="2"
-                            android:textColor="@color/black"
+                            android:textColor="#303346"
                             android:textSize="14sp" />
 
                         <TextView
@@ -355,7 +358,7 @@
                             android:layout_height="wrap_content"
                             android:text="25° / 35°"
                             android:textStyle="bold"
-                            android:textColor="@color/black"
+                            android:textColor="#303346"
                             android:textSize="16sp" />
                     </LinearLayout>
                 </LinearLayout>
@@ -383,7 +386,7 @@
                             android:layout_height="wrap_content"
                             android:text="Sea Level"
                             android:maxLines="2"
-                            android:textColor="@color/black"
+                            android:textColor="#303346"
                             android:textSize="14sp" />
 
                         <TextView
@@ -392,7 +395,7 @@
                             android:layout_height="wrap_content"
                             android:text="1025 hPa"
                             android:textStyle="bold"
-                            android:textColor="@color/black"
+                            android:textColor="#303346"
                             android:textSize="16sp" />
                     </LinearLayout>
                 </LinearLayout>

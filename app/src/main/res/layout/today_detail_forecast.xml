@@ -9,7 +9,7 @@
     android:layout_marginEnd="10dp"
     android:layout_marginBottom="5dp"
     android:animateLayoutChanges="true"
-    app:cardBackgroundColor="#FCAE73"
+    app:cardBackgroundColor="@color/lightest_blue"
     app:cardCornerRadius="10dp"
     app:cardElevation="30dp">
 
@@ -52,6 +52,8 @@
                 android:layout_height="30dp"
                 android:layout_gravity="center"
                 android:layout_weight="1"
+                app:lottie_loop="true"
+                app:lottie_autoPlay="true"
                 android:src="@drawable/sunny" />
 
             <ImageView
@@ -59,16 +61,17 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_gravity="center"
-                android:layout_weight="0"
+                android:layout_weight="1"
                 android:src="@drawable/baseline_expand_more_24" />
 
         </LinearLayout>
 
         <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/dividerAboveDescription"
             android:layout_width="match_parent"
             android:layout_height="2dp"
             android:layout_marginBottom="5dp"
-            app:dividerColor="#FDE1CB" />
+            app:dividerColor="@color/light_blue" />
 
             <TextView
                 android:id="@+id/todayDFDescription"
@@ -87,7 +90,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
                 android:visibility="gone"
-                app:dividerColor="#FDE1CB" />
+                app:dividerColor="#E59148" />
 
             <GridLayout
                 android:id="@+id/gridLayoutMain"

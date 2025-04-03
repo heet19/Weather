@@ -57,7 +57,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
-        android:background="@drawable/main_card_bg"
+        app:cardBackgroundColor="#F9C79F"
         app:cardCornerRadius="20dp"
         app:cardElevation="30dp"
         app:layout_constraintEnd_toEndOf="parent"

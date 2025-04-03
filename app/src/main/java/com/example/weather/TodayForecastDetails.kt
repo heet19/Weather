@@ -1,19 +1,25 @@
 package com.example.weather
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.weather.databinding.ActivityTodayForecastDetailsBinding
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
-class TodayForecastDetails : AppCompatActivity() {
+class TodayForecastDetails : AppCompatActivity(), SwipeRefreshLayout.OnRefreshListener {
 
     private val binding: ActivityTodayForecastDetailsBinding by lazy {
         ActivityTodayForecastDetailsBinding.inflate(layoutInflater)
     }
+
+    private lateinit var swipeRefreshLayout: SwipeRefreshLayout
 
     private lateinit var todayDetailFCAdapter: TodayDetailFCAdapter
     private val todayDetailFCAdapterArrayList = ArrayList<TodayModel>()
@@ -22,6 +28,9 @@ class TodayForecastDetails : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(binding.root)
+
+        swipeRefreshLayout = binding.refreshSwipe
+        swipeRefreshLayout.setOnRefreshListener(this)
 
         binding.btnBackTFD.setOnClickListener {
             finish()
@@ -42,12 +51,20 @@ class TodayForecastDetails : AppCompatActivity() {
             todayDetailFCAdapterArrayList.addAll(weatherList)
             todayDetailFCAdapter.notifyDataSetChanged()
         }
-
-        Log.d("TodayForecastDetails", "onCreate: Data loaded - ${todayDetailFCAdapterArrayList.size} items")
     }
 
     private fun getCurrentDate(): String {
         return LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
+    }
+
+    override fun onRefresh() {
+        Handler(Looper.getMainLooper()).postDelayed({
+            Toast.makeText(this, "refreshing", Toast.LENGTH_SHORT).show()
+            getCurrentDate()
+            TodayDetailFCAdapter(this, todayDetailFCAdapterArrayList)
+            todayDetailFCAdapter.notifyDataSetChanged()
+            swipeRefreshLayout.isRefreshing = false
+        }, 1000)
     }
 
 }

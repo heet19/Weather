@@ -45,12 +45,14 @@ class TodayDetailFCAdapter(val context : Activity, var todayDetailFCAdapterArray
         holder.binding.todayDFSeaLevel.text = "${String.format("%.1f", seaLevelValue)} $seaLevelUnit"
 
         holder.binding.todayDIcon.setAnimation(currentData.animation)
+        holder.binding.todayDIcon.playAnimation()
 
 
         // Set initial visibility states
         holder.binding.gridLayoutMain.visibility = View.GONE
         holder.binding.todayDFDescription.visibility = View.GONE
         holder.binding.dividerBelowDescription.visibility = View.GONE
+        holder.binding.dividerAboveDescription.visibility = View.GONE
         holder.binding.expandHDetail.setImageResource(R.drawable.baseline_expand_more_24)
 
         holder.binding.gridLayoutMain.layoutTransition.enableTransitionType(LayoutTransition.CHANGING)
@@ -62,12 +64,14 @@ class TodayDetailFCAdapter(val context : Activity, var todayDetailFCAdapterArray
                 holder.binding.gridLayoutMain.visibility = View.GONE
                 holder.binding.todayDFDescription.visibility = View.GONE
                 holder.binding.dividerBelowDescription.visibility = View.GONE
+                holder.binding.dividerAboveDescription.visibility = View.GONE
                 holder.binding.expandHDetail.setImageResource(R.drawable.baseline_expand_more_24)
             } else {
                 // Expand
                 holder.binding.gridLayoutMain.visibility = View.VISIBLE
                 holder.binding.todayDFDescription.visibility = View.VISIBLE
                 holder.binding.dividerBelowDescription.visibility = View.VISIBLE
+                holder.binding.dividerAboveDescription.visibility = View.VISIBLE
                 holder.binding.expandHDetail.setImageResource(R.drawable.baseline_expand_less_24)
             }
         }

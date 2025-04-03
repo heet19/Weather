@@ -32,12 +32,13 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/materialDivider"
         android:layout_width="match_parent"
         android:layout_height="2dp"
         app:dividerColor="#E89F5E"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/mainAToolbar"/>
+        app:layout_constraintTop_toBottomOf="@id/mainAToolbar" />
 
     <ImageView
         android:id="@+id/btnBackTFD"
@@ -49,68 +50,66 @@
         app:layout_constraintBottom_toBottomOf="@+id/mainAToolbar"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/settingUnit"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/refreshSwipe"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/main_card_bg"
-        app:cardCornerRadius="20dp"
-        app:cardElevation="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mainAToolbar"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/mainAToolbar">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/main_card_bg"
             android:orientation="vertical">
 
-            <LinearLayout
+            <androidx.cardview.widget.CardView
+                android:id="@+id/settingUnit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="15dp"
-                android:orientation="horizontal">
+                app:cardBackgroundColor="#F9C79F"
+                app:cardElevation="30dp">
 
-                <TextView
-                    android:id="@+id/todayFDLocation"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:lines="2"
-                    android:text="Bhilad, Gujarat, India"
-                    android:textStyle="bold|italic"
-                    android:textAllCaps="true"
-                    android:textColor="#303346"
-                    android:textSize="22sp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/main_card_bg"
+                    android:orientation="horizontal"
+                    android:padding="15dp">
 
-                <TextView
-                    android:id="@+id/todayTimeDate"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0"
-                    android:lines="2"
-                    android:text="Monday 1 April"
-                    android:textStyle="bold"
-                    android:textColor="#303346"
-                    android:textSize="18sp" />
+                    <TextView
+                        android:id="@+id/todayFDLocation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Bhilad, Gujarat, India"
+                        android:textAllCaps="true"
+                        android:textColor="#303346"
+                        android:textSize="22sp"
+                        android:textStyle="bold" />
 
-            </LinearLayout>
+                    <TextView
+                        android:id="@+id/todayTimeDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0"
+                        android:text="Monday 1 April"
+                        android:textColor="#303346"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
 
-            <com.google.android.material.divider.MaterialDivider
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                app:dividerColor="#303346" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/mainTodayDetailForecastRV"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="15dp"
                 tools:listitem="@layout/today_detail_forecast" />
 
         </LinearLayout>
-    </androidx.cardview.widget.CardView>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

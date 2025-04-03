@@ -497,4 +497,11 @@ class MainActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshListener {
         }, 1000)
     }
 
+    override fun onResume() {
+        super.onResume()
+        Toast.makeText(this, "Refresh", Toast.LENGTH_SHORT).show()
+        fetchWeatherData(currentCity)
+        fetchTodayForecast(currentCity)
+    }
+
 }

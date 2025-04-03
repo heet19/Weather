@@ -74,7 +74,7 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="20dp"
                     android:layout_marginEnd="10dp"
-                    android:background="@drawable/main_card_bg"
+                    app:cardBackgroundColor="@color/lightest_blue"
                     app:cardCornerRadius="20dp"
                     app:cardElevation="30dp">
 
@@ -195,6 +195,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="4"
                                 android:text="24 Hour Forecast"
+                                android:textColor="@color/black"
                                 android:textSize="14sp"/>
 
                             <ImageView
@@ -643,7 +644,7 @@
                                 android:scaleType="centerCrop"
                                 app:lottie_autoPlay="true"
                                 app:lottie_loop="true"
-                                app:lottie_rawRes="@raw/air_pressure_bg" />
+                                app:lottie_rawRes="@raw/wind_pressurebg" />
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -694,15 +695,15 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
 
-                            <com.airbnb.lottie.LottieAnimationView
-                                android:id="@+id/lottieGroundPressure"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:alpha="0.1"
-                                android:scaleType="fitXY"
-                                app:lottie_autoPlay="true"
-                                app:lottie_loop="true"
-                                app:lottie_rawRes="@raw/ground_level_pressure_icon" />
+<!--                            <com.airbnb.lottie.LottieAnimationView-->
+<!--                                android:id="@+id/lottieGroundPressure"-->
+<!--                                android:layout_width="match_parent"-->
+<!--                                android:layout_height="match_parent"-->
+<!--                                android:alpha="0.1"-->
+<!--                                android:scaleType="fitXY"-->
+<!--                                app:lottie_autoPlay="true"-->
+<!--                                app:lottie_loop="true"-->
+<!--                                app:lottie_rawRes="@raw/ground_level_pressure_icon" />-->
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -829,7 +830,7 @@
                             android:layout_height="match_parent"
                             android:layout_marginTop="7dp"
                             android:text="Clear Sky"
-                            android:textColor="@color/dark_blue"
+                            android:textColor="@color/black"
                             android:textSize="12sp"
                             app:layout_constraintStart_toStartOf="@id/clearSkyImage"
                             app:layout_constraintTop_toBottomOf="@id/clearSkyImage" />
@@ -841,7 +842,7 @@
                             android:paddingBottom="10dp"
                             android:text="0%"
                             android:textStyle="bold"
-                            android:textColor="@color/dark_blue"
+                            android:textColor="@color/black"
                             android:textSize="14sp"
                             app:layout_constraintStart_toStartOf="@+id/cloudProgressBarInitialText1"
                             app:layout_constraintTop_toBottomOf="@id/cloudProgressBarInitialText1" />
@@ -879,7 +880,7 @@
                             android:layout_height="match_parent"
                             android:layout_marginTop="7dp"
                             android:text="Cloudy Sky"
-                            android:textColor="@color/dark_blue"
+                            android:textColor="@color/black"
                             android:textSize="12sp"
                             app:layout_constraintEnd_toEndOf="@id/cloudSkyImage"
                             app:layout_constraintTop_toBottomOf="@id/cloudSkyImage" />
@@ -891,7 +892,7 @@
                             android:paddingBottom="10dp"
                             android:text="100%"
                             android:textStyle="bold"
-                            android:textColor="@color/dark_blue"
+                            android:textColor="@color/black"
                             android:textSize="14sp"
                             app:layout_constraintEnd_toEndOf="@+id/cloudProgressBarFinalText1"
                             app:layout_constraintTop_toBottomOf="@id/cloudProgressBarFinalText1" />

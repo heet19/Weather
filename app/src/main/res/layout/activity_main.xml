@@ -129,16 +129,6 @@
                             app:lottie_autoPlay="true"
                             app:lottie_loop="true" />
 
-<!--                        <ImageView-->
-<!--                            android:id="@+id/mainWeatherImage"-->
-<!--                            android:layout_width="0dp"-->
-<!--                            android:layout_height="100dp"-->
-<!--                            android:layout_marginTop="25dp"-->
-<!--                            android:elevation="10dp"-->
-<!--                            app:layout_constraintEnd_toEndOf="parent"-->
-<!--                            app:layout_constraintStart_toStartOf="parent"-->
-<!--                            app:layout_constraintTop_toBottomOf="@+id/mainLatitude" />-->
-
                         <TextView
                             android:id="@+id/mainTempDegree"
                             android:layout_width="wrap_content"
@@ -761,6 +751,7 @@
                                 android:alpha="0.1"
                                 android:scaleType="centerCrop"
                                 app:lottie_autoPlay="true"
+                                app:lottie_repeatMode="reverse"
                                 app:lottie_loop="true"
                                 app:lottie_rawRes="@raw/sea_level" />
 

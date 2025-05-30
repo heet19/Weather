@@ -150,7 +150,7 @@ class MainActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshListener {
                 hourlyList.add(TodayModel(timePart, temperature, animation, description!!, feelsLike, windDeg, windSpeed, humidity, visibility, clouds, pop, minTemp, maxTemp, seaLevel))
             }
         }
-        Log.e("errorrrrr", "${hourlyList}" )
+        Log.e("errorrrrr", "$hourlyList" )
 
         // Update the list and notify adapter
         todayWeatherDataArrayList.clear()
@@ -314,13 +314,13 @@ class MainActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshListener {
 
         // Update UI with converted values
         binding.mainCityName.text = city
-        binding.mainLongitude.text = "Longitude: ${longitude}"
-        binding.mainLatitude.text = "Latitude: ${latitude}"
+        binding.mainLongitude.text = "Longitude: $longitude"
+        binding.mainLatitude.text = "Latitude: $latitude"
         binding.mainTempDegree.text = "${String.format("%.1f", tempValue)} $tempUnit"
         binding.mainEnv.text = envDescription
 
         binding.feelsLikeValue.text = "${String.format("%.1f", feelsLikeValue)} $feelsLikeUnit"
-        binding.humidityValue.text = "${humidity} %"
+        binding.humidityValue.text = "$humidity %"
         binding.visibilityValue.text = "${String.format("%.1f", visibilityValue)} $visibilityUnit"
 
         binding.windSpeedValue.text = "${String.format("%.1f", windSpeedValue)} $windSpeedUnit"
@@ -333,8 +333,8 @@ class MainActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshListener {
 
         binding.cloudPB.max = 100
         binding.cloudPB.progress = clear
-        binding.cloudProgressBarInitialText2.text = "${clear} %"
-        binding.cloudProgressBarFinalText2.text = "${cloud} %"
+        binding.cloudProgressBarInitialText2.text = "$clear %"
+        binding.cloudProgressBarFinalText2.text = "$cloud %"
 
         binding.minTempValue.text = "${String.format("%.1f", minTempValue)} $minTempUnit"
         binding.maxTempValue.text = "${String.format("%.1f", maxTempValue)} $maxTempUnit"
